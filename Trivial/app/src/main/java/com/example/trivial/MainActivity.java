@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                                     b_ficha.setY(button.getY());
 
                                     ocultarCasillas();
-                                    android.widget.Toast.makeText(, "cambio", Toast.LENGTH_SHORT).show();
+                                    
                                     //Toast.makeText(getApplicationContext(),""+ b_ficha.getTag(),Toast.LENGTH_LONG).show();
 
                                 }
