@@ -2,33 +2,33 @@ package com.example.trivial;
 
 public class Preguntas {
 
-    private String mPreguntas[] = {
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?",
-            "Which is the first planet in the solar system?"
+    public String mPreguntas[] = {
+            "pregunta 1?",
+            "pregunta 2?",
+            "pregunta 3?",
+            "pregunta 4?",
+            "pregunta 5?",
+            "pregunta 6?",
+            "pregunta 7?",
+            "pregunta 8?",
+            "pregunta 9?"
 
 
     };
 
     private String mChoices[][] = {
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"},
-        {"Mercury","Venus","Mars","Saturn"}
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"},
+        {"Respuesta1","Respuesta2","Respuesta3","Respuesta4"}
     };
 
-    private String mCorrectAnswers [] = {"Mercury","Mercury","Mercury","Mercury","Mercury","Mercury","Mercury","Mercury","Mercury"};
+    private String mCorrectAnswers [] = {"Respuesta1","Respuesta2","Respuesta3","Respuesta4","Respuesta1","Respuesta2","Respuesta3","Respuesta4","Respuesta1"};
 
 
     public String getQuestion(int a){
@@ -49,7 +49,7 @@ public class Preguntas {
         return choice;
     }
     public String getChoice4(int a){
-        String choice = mChoices[a][4];
+        String choice = mChoices[a][3];
         return choice;
     }
     public String getAnswer(int a){

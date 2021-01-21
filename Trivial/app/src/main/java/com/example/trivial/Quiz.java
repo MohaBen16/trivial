@@ -3,6 +3,8 @@ package com.example.trivial;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,16 +17,18 @@ public class Quiz extends AppCompatActivity {
     Button ans1,ans2,ans3,ans4;
     TextView score, pregunta;
 
-    private Preguntas mPreguntas = new Preguntas();
+    private Preguntas mPregunta = new Preguntas();
 
     private String mAnswer;
     private int mScore =0;
-    //private int mPreguntasLenght = mPreguntas.
+    private int mPreguntasLenght = mPregunta.mPreguntas.length;
      Random r;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        r = new Random();
 
         ans1 = findViewById(R.id.answer1);
         ans2 = findViewById(R.id.answer2);
@@ -34,7 +38,7 @@ public class Quiz extends AppCompatActivity {
         score = findViewById(R.id.score);
         pregunta = findViewById(R.id.pregunta);
 
-        updateQuestion(r.nextInt());
+        updateQuestion(r.nextInt(mPreguntasLenght));
 
         ans1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +49,10 @@ public class Quiz extends AppCompatActivity {
 
                     score.setText("score:" + mScore);
 
-                    updateQuestion(r.nextInt());
+                    updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
-                    //gameOver();
+                    gameOver();
 
                 }
             }
@@ -57,31 +61,83 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(ans2.getText() == mAnswer) {
+                    mScore++;
+
+                    score.setText("score:" + mScore);
+
+                    updateQuestion(r.nextInt(mPreguntasLenght));
+                }else{
+
+                    gameOver();
+
+                }
             }
         });
         ans3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if(ans3.getText() == mAnswer) {
+                    mScore++;
+
+                    score.setText("score:" + mScore);
+
+                    updateQuestion(r.nextInt(mPreguntasLenght));
+                }else{
+
+                    gameOver();
+
+                }
             }
         });
         ans4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if(ans4.getText() == mAnswer) {
+                    mScore++;
+
+                    score.setText("score:" + mScore);
+
+                    updateQuestion(r.nextInt(mPreguntasLenght));
+                }else{
+
+                    gameOver();
+
+                }
             }
         });
     }
     public void updateQuestion(int num){
-        pregunta.setText(mPreguntas.getQuestion(num));
-        ans1.setText(mPreguntas.getChoice1(num));
-        ans2.setText(mPreguntas.getChoice2(num));
-        ans3.setText(mPreguntas.getChoice3(num));
-        ans4.setText(mPreguntas.getChoice4(num));
+        pregunta.setText(mPregunta.getQuestion(num));
+        ans1.setText(mPregunta.getChoice1(num));
+        ans2.setText(mPregunta.getChoice2(num));
+        ans3.setText(mPregunta.getChoice3(num));
+        ans4.setText(mPregunta.getChoice4(num));
 
-        mAnswer = mPreguntas.getAnswer(num);
+        mAnswer = mPregunta.getAnswer(num);
     }
-    public void game(){
-       // AlertDialog.Builder alertDialogBuilder = new AlertDialog().Builder(MainActivity.this);
+    public void gameOver(){
+       AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Quiz.this);
+
+       alertDialogBuilder
+               .setMessage("Game over! Tour Score is "+mScore + "points")
+               .setCancelable(false)
+               .setPositiveButton("New Game ", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+
+                       startActivity( new Intent(getApplicationContext(), MainActivity.class));
+                   }
+                 })
+               .setNegativeButton("Exit",
+                       new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               finish();
+                           }
+                       });
+
     }
 }
