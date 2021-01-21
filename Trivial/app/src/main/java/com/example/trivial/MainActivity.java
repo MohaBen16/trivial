@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
                     String cFicha = String.valueOf(b_ficha.getTag().toString().charAt(0));
 
 
-                    // Toast.makeText(getApplicationContext(),"tag: "+ posFicha,Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(),"tag: "+ cFicha,Toast.LENGTH_SHORT).show();
 
                     if (posFicha + nDado < 6) {
 
                         if (posCasilla  > posFicha) {
 
-                            if (posCasilla == nDado + posFicha && (cCasilla.equals(cFicha) ||cFicha.equals("0"))) {
+                            if (posCasilla == nDado + posFicha && (cCasilla.equals(cFicha) || cFicha.equals("0"))) {
 
                                 button.setVisibility(View.VISIBLE);
 
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                                         b_ficha.setY(button.getY());
 
                                         ocultarCasillas();
+                                        iv_dado.setVisibility(View.INVISIBLE);
                                     }
                                 });
                             } else {

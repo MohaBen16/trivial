@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -119,6 +120,9 @@ public class Quiz extends AppCompatActivity {
         mAnswer = mPregunta.getAnswer(num);
     }
     public void gameOver(){
+
+        Toast.makeText(getApplicationContext(), "game over ", Toast.LENGTH_SHORT).show();
+
        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Quiz.this);
 
        alertDialogBuilder

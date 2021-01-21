@@ -855,7 +855,7 @@
         android:layout_width="31dp"
         android:layout_height="30dp"
         android:background="@drawable/ficha1"
-        android:tag="a0"
+        android:tag="00"
         android:text="f"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
