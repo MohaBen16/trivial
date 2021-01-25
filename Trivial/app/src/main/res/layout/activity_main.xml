@@ -852,8 +852,8 @@
 
     <Button
         android:id="@+id/b_ficha"
-        android:layout_width="31dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:background="@drawable/ficha1"
         android:tag="00"
         android:text="f"

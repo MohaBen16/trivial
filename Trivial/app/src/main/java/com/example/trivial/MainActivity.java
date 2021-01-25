@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.m1,R.id.m2,R.id.m3,R.id.m4,R.id.m5,R.id.m6,R.id.m7d,R.id.m7i,R.id.m8d,R.id.m8i,R.id.m9d,R.id.m9i,
             R.id.n1,R.id.n2,R.id.n3,R.id.n4,R.id.n5,R.id.n6
     };
+
+ //   Map<String,String> cMapa= new HashMap<String,String>();
 
 
     private float posX,posY;
@@ -52,20 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
                     // numero de la posicion de la casilla
                     int posCasilla = button.getResources().getResourceEntryName(button.getId()).charAt(1) - '0';
-
                     // categoria de la posicion de la casilla
                     String cCasilla = String.valueOf(button.getResources().getResourceEntryName(button.getId()).charAt(0));
-
                     // posicion en la que esta la ficha
                     int posFicha = b_ficha.getTag().toString().charAt(1) - '0';
-
                     // categoria en la que esta la ficha
                     String cFicha = String.valueOf(b_ficha.getTag().toString().charAt(0));
 
-
                     // Toast.makeText(getApplicationContext(),"tag: "+ cFicha,Toast.LENGTH_SHORT).show();
 
-                    if (posFicha + nDado < 6) {
+                    if (posFicha + nDado <=6) {
 
                         if (posCasilla  > posFicha) {
 
@@ -92,11 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                    }else if( posFicha == 6 && nDado > 3 && cCasilla.equals(cFicha)) {
+                    }else if( posFicha == 6 && nDado > 3) {
 
-                        Toast.makeText(getApplicationContext(),""+ (((6-nDado)+2)+nDado),Toast.LENGTH_LONG).show();
-
-                        if (posCasilla == (((6-nDado)+2)+posFicha)) {
+                        if (posCasilla == ((posFicha-nDado)+(posFicha+1))) {
 
                             button.setVisibility(View.VISIBLE);
 
@@ -104,7 +102,28 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
-                                    b_ficha.bringToFront();
+                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
+
+                                    b_ficha.setX(button.getX());
+                                    b_ficha.setY(button.getY());
+
+                                    ocultarCasillas();
+                                }
+                            });
+                        } else {
+                            button.setVisibility(View.INVISIBLE);
+                        }
+
+
+                    }else if( posFicha > 6 && nDado < 4) {
+
+                        if (posCasilla == (posFicha-nDado)) {
+
+                            button.setVisibility(View.VISIBLE);
+
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
                                     b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
 
@@ -112,9 +131,29 @@ public class MainActivity extends AppCompatActivity {
                                     b_ficha.setY(button.getY());
 
                                     ocultarCasillas();
-                                    
-                                    //Toast.makeText(getApplicationContext(),""+ b_ficha.getTag(),Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            button.setVisibility(View.INVISIBLE);
+                        }
+                    }else if( posFicha > 6 ) {
 
+                        Toast.makeText(getApplicationContext(),"prueba "+ ((posFicha-nDado)+5),Toast.LENGTH_LONG).show();
+
+                        if (posCasilla == ((posFicha-nDado)+5)) {
+
+                            button.setVisibility(View.VISIBLE);
+
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
+
+                                    b_ficha.setX(button.getX());
+                                    b_ficha.setY(button.getY());
+
+                                    ocultarCasillas();
                                 }
                             });
                         } else {
@@ -140,15 +179,11 @@ public class MainActivity extends AppCompatActivity {
                                     b_ficha.setY(button.getY());
 
                                     ocultarCasillas();
-
-                                    //Toast.makeText(getApplicationContext(),""+ b_ficha.getTag(),Toast.LENGTH_LONG).show();
-
                                 }
                             });
                         }else{
                             button.setVisibility(View.INVISIBLE);
                         }
-
 
                     }
                 }
