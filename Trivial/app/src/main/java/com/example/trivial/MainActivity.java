@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
  //   Map<String,String> cMapa= new HashMap<String,String>();
-//hola
 
     private float posX,posY;
 
