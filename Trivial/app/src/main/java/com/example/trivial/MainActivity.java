@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     public static final Random RANDOM = new Random();
 
     Button b_dado,b_ficha,b1;
-    ImageView iv_dado;
+    ImageView iv_dado,q_azul;
+
 
     private static final int[] CASILLAS = {
             R.id.a1,R.id.a2,R.id.a3,R.id.a4,R.id.a5,R.id.a6,R.id.a7d,R.id.a7i,R.id.a8d,R.id.a8i,R.id.a9d,R.id.a9i,
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.n1,R.id.n2,R.id.n3,R.id.n4,R.id.n5,R.id.n6
     };
 
- //   Map<String,String> cMapa= new HashMap<String,String>();
+    Map<String,String> cMapa= new HashMap<String,String>();
 
     private float posX,posY;
 
@@ -38,9 +40,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
+        cMapa.put("a","mr");
+        cMapa.put("r","an");
+        cMapa.put("n","ro");
+        cMapa.put("o","nv");
+        cMapa.put("v","om");
+        cMapa.put("m","va");
+
         b_dado = (Button)findViewById(R.id.b_dado);
         b_ficha = (Button)findViewById(R.id.b_ficha);
         iv_dado = (ImageView)findViewById(R.id.iv_dado);
+        q_azul= findViewById(R.id.quisitoA);
 
         b_dado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
                     // categoria en la que esta la ficha
                     String cFicha = String.valueOf(b_ficha.getTag().toString().charAt(0));
 
-                    // Toast.makeText(getApplicationContext(),"tag: "+ cFicha,Toast.LENGTH_SHORT).show();
+                    if(posFicha == 6 && cCasilla.equals("a")){
+                        q_azul.setVisibility(View.VISIBLE);
+                    }
 
                     if (posFicha + nDado <=6) {
 
@@ -70,21 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
                             if (posCasilla == nDado + posFicha && (cCasilla.equals(cFicha) || cFicha.equals("0"))) {
 
-                                button.setVisibility(View.VISIBLE);
+                                moverFicha(button);
 
-                                button.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
-
-                                        b_ficha.setX(button.getX());
-                                        b_ficha.setY(button.getY());
-
-                                        ocultarCasillas();
-                                        iv_dado.setVisibility(View.INVISIBLE);
-                                    }
-                                });
                             } else {
                                 button.setVisibility(View.INVISIBLE);
                             }
@@ -93,93 +94,43 @@ public class MainActivity extends AppCompatActivity {
 
                     }else if( posFicha == 6 && nDado > 3) {
 
-                        if (posCasilla == ((posFicha-nDado)+(posFicha+1))) {
+                       // Toast.makeText(getApplicationContext(),"cCASILLA:"+cCasilla+ " cMAP: " +cMapa.get(cFicha).charAt(1) ,Toast.LENGTH_SHORT).show();
 
-                            button.setVisibility(View.VISIBLE);
+                        if ((posCasilla == ((posFicha-nDado)+(posFicha+1))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha)).charAt(0)) || cCasilla.equals(String.valueOf(cMapa.get(cFicha)).charAt(1)))) {
 
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                            moverFicha(button);
 
-                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
-
-                                    b_ficha.setX(button.getX());
-                                    b_ficha.setY(button.getY());
-
-                                    ocultarCasillas();
-                                }
-                            });
                         } else {
                             button.setVisibility(View.INVISIBLE);
                         }
-
 
                     }else if( posFicha > 6 && nDado < 4) {
 
                         if (posCasilla == (posFicha-nDado)) {
 
-                            button.setVisibility(View.VISIBLE);
+                            moverFicha(button);
 
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
-
-                                    b_ficha.setX(button.getX());
-                                    b_ficha.setY(button.getY());
-
-                                    ocultarCasillas();
-                                }
-                            });
                         } else {
                             button.setVisibility(View.INVISIBLE);
                         }
                     }else if( posFicha > 6 ) {
 
-                        Toast.makeText(getApplicationContext(),"prueba "+ ((posFicha-nDado)+5),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"prueba "+ cMapa.get(cFicha),Toast.LENGTH_LONG).show();
 
-                        if (posCasilla == ((posFicha-nDado)+5)) {
+                        if (posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1))))) {
 
-                            button.setVisibility(View.VISIBLE);
+                            moverFicha(button);
 
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
-
-                                    b_ficha.setX(button.getX());
-                                    b_ficha.setY(button.getY());
-
-                                    ocultarCasillas();
-                                }
-                            });
                         } else {
                             button.setVisibility(View.INVISIBLE);
                         }
-
 
                     }else{
 
                         if(posCasilla == nDado+posFicha && cCasilla.equals(cFicha) ){
 
-                            button.setVisibility(View.VISIBLE);
+                            moverFicha(button);
 
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    b_ficha.bringToFront();
-
-                                    b_ficha.setTag(String.valueOf(button.getResources().getResourceEntryName(button.getId())));
-
-                                    b_ficha.setX(button.getX());
-                                    b_ficha.setY(button.getY());
-
-                                    ocultarCasillas();
-                                }
-                            });
                         }else{
                             button.setVisibility(View.INVISIBLE);
                         }
@@ -199,5 +150,22 @@ public class MainActivity extends AppCompatActivity {
             final Button button = (Button) findViewById(id);
             button.setVisibility(View.INVISIBLE);
         }
+    }
+    public void moverFicha(final Button b){
+
+        b.setVisibility(View.VISIBLE);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                b_ficha.setTag(String.valueOf(b.getResources().getResourceEntryName(b.getId())));
+
+                b_ficha.setX(b.getX());
+                b_ficha.setY(b.getY());
+
+                ocultarCasillas();
+            }
+        });
     }
 }
