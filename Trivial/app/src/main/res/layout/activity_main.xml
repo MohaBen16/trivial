@@ -8,30 +8,58 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/iv_dado"
-        android:layout_width="136dp"
-        android:layout_height="84dp"
-        android:tag="00"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:id="@+id/fichaJugador2"
+        android:layout_width="119dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginLeft="280dp"
+        android:rotationX="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113"
+        app:srcCompat="@drawable/fichajugador" />
+
+    <TextView
+        android:id="@+id/score2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407"
+        app:layout_constraintVertical_bias="0.036" />
+
+    <ImageView
+        android:id="@+id/iv_dado"
+        android:layout_width="121dp"
+        android:layout_height="76dp"
+        android:tag="00"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.689"
         app:srcCompat="@drawable/dado_1" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/tablero"
         android:layout_width="473dp"
         android:layout_height="395dp"
-        android:src="@drawable/trivial"
+        android:src="@drawable/tablero2"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintVertical_bias="0.714" />
 
     <Button
         android:id="@+id/n1c"
@@ -42,11 +70,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.415" />
 
     <Button
@@ -58,11 +86,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.388" />
 
     <Button
@@ -74,11 +102,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.35" />
 
     <Button
@@ -90,11 +118,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.323" />
 
     <Button
@@ -106,11 +134,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.293" />
 
     <Button
@@ -122,11 +150,11 @@
         android:rotationY="25"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.258" />
 
     <Button
@@ -137,9 +165,9 @@
 
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.56" />
 
@@ -151,11 +179,11 @@
         android:rotation="-60"
         android:tag="5r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.62"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.564" />
 
     <Button
@@ -166,11 +194,11 @@
         android:rotation="-60"
         android:tag="2r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.672"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.594" />
 
     <Button
@@ -181,11 +209,11 @@
         android:rotation="-60"
         android:tag="3r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.716"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.632" />
 
     <Button
@@ -196,11 +224,11 @@
         android:rotation="-60"
         android:tag="4r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.759"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.662" />
 
     <Button
@@ -211,11 +239,11 @@
         android:rotation="-60"
         android:tag="5r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.7" />
 
     <Button
@@ -226,11 +254,11 @@
         android:rotation="-60"
         android:tag="6r"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.729" />
 
     <Button
@@ -240,11 +268,11 @@
         android:background="@drawable/border3"
         android:tag="1o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.345" />
 
     <Button
@@ -254,11 +282,11 @@
         android:background="@drawable/border3"
         android:tag="2o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.282" />
 
     <Button
@@ -268,11 +296,11 @@
         android:background="@drawable/border3"
         android:tag="3o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.221" />
 
     <Button
@@ -282,11 +310,11 @@
         android:background="@drawable/border3"
         android:tag="4o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.159" />
 
     <Button
@@ -296,11 +324,11 @@
         android:background="@drawable/border3"
         android:tag="5o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.096" />
 
     <Button
@@ -310,11 +338,11 @@
         android:background="@drawable/border3"
         android:tag="6o"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.034" />
 
     <Button
@@ -325,11 +353,11 @@
         android:rotation="60"
         android:tag="m1"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.588" />
 
     <Button
@@ -340,11 +368,11 @@
         android:rotation="60"
         android:tag="m2"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.613" />
 
     <Button
@@ -355,11 +383,11 @@
         android:rotation="60"
         android:tag="m3"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.256"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.649" />
 
     <Button
@@ -370,11 +398,11 @@
         android:rotation="60"
         android:tag="m4"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.681" />
 
     <Button
@@ -385,11 +413,11 @@
         android:rotation="60"
         android:tag="m5"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.701" />
 
     <Button
@@ -400,11 +428,11 @@
         android:rotation="60"
         android:tag="1a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.744" />
 
     <Button
@@ -414,11 +442,11 @@
         android:background="@drawable/border3"
         android:tag="1a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.658" />
 
     <Button
@@ -428,11 +456,11 @@
         android:background="@drawable/border3"
         android:tag="2a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.721" />
 
     <Button
@@ -442,11 +470,11 @@
         android:background="@drawable/border3"
         android:tag="3a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.781" />
 
     <Button
@@ -456,11 +484,11 @@
         android:background="@drawable/border3"
         android:tag="4a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.841" />
 
     <Button
@@ -470,11 +498,11 @@
         android:background="@drawable/border3"
         android:tag="5a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.902" />
 
     <Button
@@ -484,11 +512,11 @@
         android:background="@drawable/border3"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.975" />
 
     <Button
@@ -499,11 +527,11 @@
         android:rotation="13"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.972" />
 
     <Button
@@ -514,11 +542,11 @@
         android:rotation="75"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.657" />
 
     <Button
@@ -529,11 +557,11 @@
         android:rotation="75"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.543" />
 
     <Button
@@ -544,11 +572,11 @@
         android:rotation="75"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.597" />
 
     <Button
@@ -559,11 +587,11 @@
         android:rotation="49"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.839" />
 
     <Button
@@ -574,11 +602,11 @@
         android:rotation="40"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.877" />
 
     <Button
@@ -589,11 +617,11 @@
         android:rotation="30"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.907" />
 
     <Button
@@ -604,11 +632,11 @@
         android:rotation="24"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.926" />
 
     <Button
@@ -619,11 +647,11 @@
         android:rotation="-17"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.972" />
 
     <Button
@@ -634,11 +662,11 @@
         android:rotation="-54"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.826" />
 
     <Button
@@ -649,11 +677,11 @@
         android:rotation="-74"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.649" />
 
     <Button
@@ -664,11 +692,11 @@
         android:rotation="-81"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.543" />
 
     <Button
@@ -679,11 +707,11 @@
         android:rotation="-74"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.597" />
 
     <Button
@@ -694,11 +722,11 @@
         android:rotation="-42"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.798"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.853" />
 
     <Button
@@ -709,11 +737,11 @@
         android:rotation="-38"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.762"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.899" />
 
     <Button
@@ -724,11 +752,11 @@
         android:rotation="-17"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.951" />
 
     <Button
@@ -739,11 +767,11 @@
         android:rotation="-26"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.926" />
 
     <Button
@@ -754,11 +782,11 @@
         android:rotation="17"
         android:tag="6a"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.358"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.951" />
 
     <Button
@@ -769,11 +797,11 @@
         android:rotation="-60"
         android:tag="1v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.386"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.427" />
 
     <Button
@@ -784,11 +812,11 @@
         android:rotation="-60"
         android:tag="2v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.334"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.389" />
 
     <Button
@@ -799,11 +827,11 @@
         android:rotation="-60"
         android:tag="3v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.359" />
 
     <Button
@@ -814,11 +842,11 @@
         android:rotation="-60"
         android:tag="4v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.245"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.321" />
 
     <Button
@@ -829,11 +857,11 @@
         android:rotation="-60"
         android:tag="5v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.195"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.291" />
 
     <Button
@@ -844,117 +872,225 @@
         android:rotation="-60"
         android:tag="6v"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.278" />
 
     <Button
-        android:id="@+id/b_ficha"
+        android:id="@+id/b_ficha1"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:background="@drawable/fichajugador"
         android:tag="00"
-        android:text="f"
+        android:text="F1"
+        android:textColor="@android:color/background_light"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.501" />
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.494" />
+
+    <Button
+        android:id="@+id/b_ficha2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/fichajugador"
+        android:tag="00"
+        android:text="F2"
+        android:textColor="@android:color/background_light"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.494" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.805" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/clasificacion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.801" />
+        app:layout_constraintTop_toBottomOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.805" />
 
     <Button
         android:id="@+id/b_dado"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/dado"
         android:rotation="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.247"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.801" />
+        app:layout_constraintTop_toBottomOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.805" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="119dp"
-        android:layout_height="88dp"
+    <TextView
+        android:id="@+id/tJugador2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugando"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009"
+        app:layout_constraintVertical_bias="0.24" />
+
+    <ImageView
+        android:id="@+id/fichaJugador1"
+        android:layout_width="119dp"
+        android:layout_height="88dp"
+        android:rotationX="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113"
         app:srcCompat="@drawable/fichajugador" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="119dp"
-        android:layout_height="88dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:id="@+id/quisitoO"
+        android:layout_width="37dp"
+        android:layout_height="47dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/o" />
+
+    <ImageView
+        android:id="@+id/quisitoR"
+        android:layout_width="39dp"
+        android:layout_height="53dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="0.514"
+        app:srcCompat="@drawable/r" />
+
+    <ImageView
+        android:id="@+id/quisitoM"
+        android:layout_width="35dp"
+        android:layout_height="52dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/m" />
+
+    <TextView
+        android:id="@+id/tJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugando"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009"
-        app:srcCompat="@drawable/fichajugador" />
+        app:layout_constraintVertical_bias="0.24" />
+
+    <TextView
+        android:id="@+id/nJugador1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Moha"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <TextView
+        android:id="@+id/nJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gonza"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <ImageView
+        android:id="@+id/quisitoN"
+        android:layout_width="36dp"
+        android:layout_height="48dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/j" />
+
+    <ImageView
+        android:id="@+id/quisitoV"
+        android:layout_width="38dp"
+        android:layout_height="54dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="0.529"
+        app:srcCompat="@drawable/v" />
 
     <ImageView
         android:id="@+id/quisitoA"
-        android:layout_width="36dp"
-        android:layout_height="47dp"
+        android:layout_width="35dp"
+        android:layout_height="50dp"
         android:rotation="2"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador1"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador1"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/a" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugador 1"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugador 2"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
