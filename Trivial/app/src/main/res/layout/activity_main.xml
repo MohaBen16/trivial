@@ -880,25 +880,9 @@
         app:layout_constraintVertical_bias="0.278" />
 
     <Button
-        android:id="@+id/b_ficha1"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:background="@drawable/fichajugador"
-        android:tag="00"
-        android:text="F1"
-        android:textColor="@android:color/background_light"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tablero"
-        app:layout_constraintEnd_toEndOf="@+id/tablero"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="@+id/tablero"
-        app:layout_constraintTop_toTopOf="@+id/tablero"
-        app:layout_constraintVertical_bias="0.494" />
-
-    <Button
         android:id="@+id/b_ficha2"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@drawable/fichajugador"
         android:tag="00"
         android:text="F2"
@@ -906,7 +890,23 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="@+id/tablero"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="@+id/tablero"
+        app:layout_constraintTop_toTopOf="@+id/tablero"
+        app:layout_constraintVertical_bias="0.495" />
+
+    <Button
+        android:id="@+id/b_ficha1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/fichajugador"
+        android:tag="00"
+        android:text="F1"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tablero"
+        app:layout_constraintEnd_toEndOf="@+id/tablero"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/tablero"
         app:layout_constraintTop_toTopOf="@+id/tablero"
         app:layout_constraintVertical_bias="0.494" />
@@ -984,6 +984,18 @@
         app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/o" />
+    <ImageView
+        android:id="@+id/quisitoO2"
+        android:layout_width="37dp"
+        android:layout_height="47dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/o" />
 
     <ImageView
         android:id="@+id/quisitoR"
@@ -999,6 +1011,19 @@
         app:srcCompat="@drawable/r" />
 
     <ImageView
+        android:id="@+id/quisitoR2"
+        android:layout_width="39dp"
+        android:layout_height="53dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
+        app:layout_constraintVertical_bias="0.514"
+        app:srcCompat="@drawable/r" />
+
+    <ImageView
         android:id="@+id/quisitoM"
         android:layout_width="35dp"
         android:layout_height="52dp"
@@ -1010,6 +1035,18 @@
         app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/m" />
+    <ImageView
+        android:id="@+id/quisitoM2"
+        android:layout_width="35dp"
+        android:layout_height="52dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/m" />
 
     <TextView
         android:id="@+id/tJugador"
@@ -1019,10 +1056,10 @@
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <TextView
         android:id="@+id/nJugador1"
@@ -1033,10 +1070,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <TextView
         android:id="@+id/nJugador"
@@ -1066,6 +1103,19 @@
         app:srcCompat="@drawable/j" />
 
     <ImageView
+        android:id="@+id/quisitoN2"
+        android:layout_width="36dp"
+        android:layout_height="48dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/j" />
+
+    <ImageView
         android:id="@+id/quisitoV"
         android:layout_width="38dp"
         android:layout_height="54dp"
@@ -1075,6 +1125,19 @@
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
         app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="0.529"
+        app:srcCompat="@drawable/v" />
+
+    <ImageView
+        android:id="@+id/quisitoV2"
+        android:layout_width="38dp"
+        android:layout_height="54dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
         app:layout_constraintVertical_bias="0.529"
         app:srcCompat="@drawable/v" />
 
@@ -1089,6 +1152,20 @@
         app:layout_constraintHorizontal_bias="0.369"
         app:layout_constraintStart_toStartOf="@+id/fichaJugador1"
         app:layout_constraintTop_toTopOf="@+id/fichaJugador1"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/a" />
+
+    <ImageView
+        android:id="@+id/quisitoA2"
+        android:layout_width="35dp"
+        android:layout_height="50dp"
+        android:rotation="2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/fichaJugador2"
+        app:layout_constraintEnd_toEndOf="@+id/fichaJugador2"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toStartOf="@+id/fichaJugador2"
+        app:layout_constraintTop_toTopOf="@+id/fichaJugador2"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/a" />
 

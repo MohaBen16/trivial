@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         t_j1 = findViewById(R.id.tJugador);
         t_j2 = findViewById(R.id.tJugador2);
 
+        Toast.makeText(getApplicationContext(), "Lanzamiento de comienzo ", Toast.LENGTH_SHORT).show();
+
         b_dado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             q_azul.setVisibility(View.VISIBLE);
                         }
 
-                        //Control de moviminetos
+                        //Control de movimientos
 
                         if (posFicha + nDado <= 9 && posCasilla  > posFicha) {
 
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }else if( posFicha > 6 ) {
 
-                            if ((posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla))|| posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
+                            if ((posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
                                 moverFicha(button);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
