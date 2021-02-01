@@ -29,6 +29,8 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        getSupportActionBar().hide();
+
         r = new Random();
 
         ans1 = findViewById(R.id.answer1);
@@ -53,7 +55,12 @@ public class Quiz extends AppCompatActivity {
                     updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
-                    gameOver();
+                    onBackPressed();
+
+                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
+                   // startActivity(intent);
+
+                    //gameOver();
 
                 }
             }
@@ -70,7 +77,10 @@ public class Quiz extends AppCompatActivity {
                     updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
-                    gameOver();
+                    onBackPressed();
+                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
+                  //  startActivity(intent);
+                    //gameOver();
 
                 }
             }
@@ -87,7 +97,10 @@ public class Quiz extends AppCompatActivity {
                     updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
-                    gameOver();
+                    onBackPressed();
+                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
+                   // startActivity(intent);
+                   // gameOver();
 
                 }
             }
@@ -104,7 +117,10 @@ public class Quiz extends AppCompatActivity {
                     updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
-                    gameOver();
+                    onBackPressed();
+                    //Intent intent = new Intent(Quiz.this, MainActivity.class);
+                    //startActivity(intent);
+                   // gameOver();
 
                 }
             }
