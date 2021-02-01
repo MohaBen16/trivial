@@ -25,11 +25,29 @@ public final class OperacionesBaseDatos {
         return instancia;
     }
 
-    public void SetPregunta(int categoria, String textopregunta) {
+    public void SetPregunta(CategoriaPregunta categoria, String textopregunta) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
+        int catdb = 0;
+
+        if(categoria == CategoriaPregunta.historia) catdb = 1;
+        else if(categoria == CategoriaPregunta.arte) catdb = 2;
+        else if(categoria == CategoriaPregunta.deportes) catdb = 3;
+        else if(categoria == CategoriaPregunta.ciencia) catdb = 4;
+        else if(categoria == CategoriaPregunta.lengua) catdb = 5;
+
+        Cursor fila = db.rawQuery("Select id from pregunta",null);
+
+        int id = 1;
+        if (fila.moveToFirst()) {
+            do {
+                id++;
+            } while (fila.moveToNext());
+        }
+
         ContentValues registro = new ContentValues();
-        registro.put("categoria", categoria);
+        registro.put("id",id);
+        registro.put("categoria", catdb);
         registro.put("textopregunta", textopregunta);
 
         db.insert("pregunta", null, registro);
@@ -41,15 +59,23 @@ public final class OperacionesBaseDatos {
         Pregunta pregunta = null;
         SQLiteDatabase db = bDatos.getReadableDatabase();
 
-        Cursor fila = db.rawQuery("select id,categoria,textopregunta from pregunta where categoria = '" + categoria + "'", null);
+        int catdb = 0;
+
+        if(categoria == CategoriaPregunta.historia) catdb = 1;
+        else if(categoria == CategoriaPregunta.arte) catdb = 2;
+        else if(categoria == CategoriaPregunta.deportes) catdb = 3;
+        else if(categoria == CategoriaPregunta.ciencia) catdb = 4;
+        else if(categoria == CategoriaPregunta.lengua) catdb = 5;
+
+        Cursor fila = db.rawQuery("select id,categoria,textopregunta from pregunta where categoria = '" + catdb + "'", null);
 
         Random r1 = new Random();
-        //int r = r1.nextInt(fila.getColumnCount());
-        int r = 1;
+        int r = r1.nextInt(fila.getCount());
+
         if (fila.moveToFirst()) {
             do {
-                if (fila.getPosition() == r) {
-                    pregunta = new Pregunta(fila.getInt(1), categoria, fila.getString(3));
+               if (fila.getPosition() == r) {
+                    pregunta = new Pregunta(fila.getInt(1), categoria, fila.getString(2));
                 }
             } while (fila.moveToNext());
         }
@@ -66,7 +92,7 @@ public final class OperacionesBaseDatos {
         Cursor fila = db.rawQuery("select id,categoria,textopregunta from pregunta", null);
 
         Random r1 = new Random();
-        int r = r1.nextInt(fila.getColumnCount());
+        int r = r1.nextInt(fila.getCount());
 
         if (fila.moveToFirst()) {
             do {
@@ -88,29 +114,49 @@ public final class OperacionesBaseDatos {
         return pregunta;
     }
 
+    public void BorrarTodasPreguntas(){
+        SQLiteDatabase db = bDatos.getWritableDatabase();
+
+        db.execSQL("delete from pregunta");
+        db.close();
+    }
+
     public void SetRespuesta(int id_pregunta, String textorespuesta, boolean correcta) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
+        int pcorrecta = 1;
+        if(correcta == true) pcorrecta = 0;
+
+        Cursor fila = db.rawQuery("Select id from respuesta",null);
+
+        int id = 1;
+        if (fila.moveToFirst()) {
+            do {
+                id++;
+            } while (fila.moveToNext());
+        }
+
         ContentValues registro = new ContentValues();
+        registro.put("id",id);
         registro.put("id_pregunta", id_pregunta);
         registro.put("textorespuesta", textorespuesta);
-        registro.put("correcta", correcta);
+        registro.put("bcorrecta", pcorrecta);
 
         db.insert("respuesta", null, registro);
         db.close();
     }
 
-    public ArrayList<Respuesta> GetRespuestas(int categoria) {
+    public ArrayList<Respuesta> GetRespuestas(int id_pregunta) {
         ArrayList<Respuesta> Respuestas = new ArrayList<Respuesta>();
         SQLiteDatabase db = bDatos.getReadableDatabase();
 
-        Cursor fila = db.rawQuery("select id,id_pregunta,textorespuesta,correcta from respuesta where categoria = '" + categoria + "'", null);
+        Cursor fila = db.rawQuery("select id,id_pregunta,textorespuesta,bcorrecta from respuesta where id_pregunta = '" + id_pregunta + "'", null);
 
         if (fila.moveToFirst()) {
             do {
                 boolean correcta = false;
-                if(fila.getInt(4) == 0) correcta = true;
-                Respuestas.add(new Respuesta(fila.getInt(1),fila.getInt(2),fila.getString(3),correcta));
+                if(fila.getInt(3) == 0) correcta = true;
+                Respuestas.add(new Respuesta(fila.getInt(0),fila.getInt(1),fila.getString(2),correcta));
             } while (fila.moveToNext());
         }
 
@@ -122,8 +168,18 @@ public final class OperacionesBaseDatos {
     public void SetPartida(boolean terminada) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
+        Cursor fila = db.rawQuery("Select id from partida",null);
+
+        int id = 1;
+        if (fila.moveToFirst()) {
+            do {
+                id++;
+            } while (fila.moveToNext());
+        }
+
         ContentValues registro = new ContentValues();
-        registro.put("terminada", terminada);
+        registro.put("id",id);
+        registro.put("bterminada", terminada);
 
         db.insert("partida", null, registro);
         db.close();
@@ -148,18 +204,31 @@ public final class OperacionesBaseDatos {
         return Respuestas;
     }*/
 
-    public void SetJugador(int id_partida, boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
+    public void SetJugador(int id_partida,String poscion,boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
+        //PASAR BOLEAN A INT
+
+        Cursor fila = db.rawQuery("Select id from jugador",null);
+
+        int id = 1;
+        if (fila.moveToFirst()) {
+            do {
+                id++;
+            } while (fila.moveToNext());
+        }
+
         ContentValues registro = new ContentValues();
+        registro.put("id",id);
+        registro.put("poscion",poscion);
         registro.put("id_partida", id_partida);
-        registro.put("qamarillo", qamarillo);
-        registro.put("qrosa", qrosa);
-        registro.put("qverde", qverde);
-        registro.put("qmarron", qmarron);
-        registro.put("qazul", qazul);
-        registro.put("qnaranja", qnaranja);
-        registro.put("ganador", ganador);
+        registro.put("bqamarillo", qamarillo);
+        registro.put("bqrosa", qrosa);
+        registro.put("bqverde", qverde);
+        registro.put("bqmarron", qmarron);
+        registro.put("bqazul", qazul);
+        registro.put("bqnaranja", qnaranja);
+        registro.put("bganador", ganador);
 
         db.insert("jugador", null, registro);
         db.close();

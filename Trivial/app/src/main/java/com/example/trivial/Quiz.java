@@ -18,12 +18,8 @@ public class Quiz extends AppCompatActivity {
     Button ans1,ans2,ans3,ans4;
     TextView score, pregunta;
 
-    private Preguntas mPregunta = new Preguntas();
+    CategoriaPregunta categoria = CategoriaPregunta.geografia;
 
-    private String mAnswer;
-    private int mScore =0;
-    private int mPreguntasLenght = mPregunta.mPreguntas.length;
-     Random r;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +27,14 @@ public class Quiz extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        r = new Random();
+        int catdb = getIntent().getIntExtra("categoria",-1);
+
+        if (catdb == 0) categoria = CategoriaPregunta.geografia;
+        else if (catdb == 1) categoria = CategoriaPregunta.historia;
+        else if (catdb == 2) categoria = CategoriaPregunta.arte;
+        else if (catdb == 3) categoria = CategoriaPregunta.deportes;
+        else if (catdb == 4) categoria = CategoriaPregunta.ciencia;
+        else if (catdb == 5) categoria = CategoriaPregunta.lengua;
 
         ans1 = findViewById(R.id.answer1);
         ans2 = findViewById(R.id.answer2);
@@ -41,123 +44,65 @@ public class Quiz extends AppCompatActivity {
         score = findViewById(R.id.score);
         pregunta = findViewById(R.id.pregunta);
 
-        updateQuestion(r.nextInt(mPreguntasLenght));
-
+        updateQuestion();
         ans1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(ans1.getText() == mAnswer) {
-                    mScore++;
+                /*if(ans1.getText() == mAnswer) {
 
-                    score.setText("score:" + mScore);
-
-                    updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
                     onBackPressed();
-
-                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
-                   // startActivity(intent);
-
-                    //gameOver();
-
-                }
+                }*/
             }
         });
         ans2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(ans2.getText() == mAnswer) {
-                    mScore++;
+                /*if(ans2.getText() == mAnswer) {
 
-                    score.setText("score:" + mScore);
-
-                    updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
                     onBackPressed();
-                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
-                  //  startActivity(intent);
-                    //gameOver();
-
-                }
+                }*/
             }
         });
         ans3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(ans3.getText() == mAnswer) {
-                    mScore++;
+                /*if(ans3.getText() == mAnswer) {
 
-                    score.setText("score:" + mScore);
 
-                    updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
                     onBackPressed();
-                   // Intent intent = new Intent(Quiz.this, MainActivity.class);
-                   // startActivity(intent);
-                   // gameOver();
-
-                }
+                }*/
             }
         });
         ans4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(ans4.getText() == mAnswer) {
-                    mScore++;
+                /*if(ans4.getText() == mAnswer) {
 
-                    score.setText("score:" + mScore);
 
-                    updateQuestion(r.nextInt(mPreguntasLenght));
                 }else{
 
                     onBackPressed();
-                    //Intent intent = new Intent(Quiz.this, MainActivity.class);
-                    //startActivity(intent);
-                   // gameOver();
-
-                }
+                }*/
             }
         });
     }
-    public void updateQuestion(int num){
-        pregunta.setText(mPregunta.getQuestion(num));
-        ans1.setText(mPregunta.getChoice1(num));
-        ans2.setText(mPregunta.getChoice2(num));
-        ans3.setText(mPregunta.getChoice3(num));
-        ans4.setText(mPregunta.getChoice4(num));
-
-        mAnswer = mPregunta.getAnswer(num);
-    }
-    public void gameOver(){
-
-        Toast.makeText(getApplicationContext(), "game over ", Toast.LENGTH_SHORT).show();
-
-       AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Quiz.this);
-
-       alertDialogBuilder
-               .setMessage("Game over! Tour Score is "+mScore + "points")
-               .setCancelable(false)
-               .setPositiveButton("New Game ", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-
-                       startActivity( new Intent(getApplicationContext(), MainActivity.class));
-                   }
-                 })
-               .setNegativeButton("Exit",
-                       new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int which) {
-                               finish();
-                           }
-                       });
-
+    public void updateQuestion(){
+        OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+        int id_pregunta = 1;
+        pregunta.setText(opdb.GetPregunta(categoria).getTextopregunta());
+        ans1.setText(opdb.GetRespuestas(id_pregunta).get(0).getTextorespuesta());
+        ans2.setText(opdb.GetRespuestas(id_pregunta).get(1).getTextorespuesta());
+        ans3.setText(opdb.GetRespuestas(id_pregunta).get(2).getTextorespuesta());
+        ans4.setText(opdb.GetRespuestas(id_pregunta).get(3).getTextorespuesta());
     }
 }
