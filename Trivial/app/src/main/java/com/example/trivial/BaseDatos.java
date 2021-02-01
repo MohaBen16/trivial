@@ -39,7 +39,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table if not exists pregunta(" +
                 "id integer primary key AUTOINCREMENT," +
-                "categoria text not null," +
+                "categoria int not null," +
                 "textopregunta text not null)"
         );
 
