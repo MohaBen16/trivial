@@ -158,9 +158,9 @@
         app:layout_constraintVertical_bias="0.258" />
 
     <Button
-        android:id="@+id/b_centro"
-        android:layout_width="95dp"
-        android:layout_height="92dp"
+        android:id="@+id/b0c"
+        android:layout_width="84dp"
+        android:layout_height="88dp"
         android:background="@drawable/border"
 
         android:visibility="invisible"
@@ -169,7 +169,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/tablero"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.612" />
 
     <Button
         android:id="@+id/r1c"
@@ -888,6 +888,7 @@
         android:text="F2"
         android:textColor="@android:color/background_light"
         android:textSize="10sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/tablero"
         app:layout_constraintEnd_toEndOf="@+id/tablero"
         app:layout_constraintHorizontal_bias="0.548"

@@ -44,7 +44,7 @@ public class Quiz extends AppCompatActivity {
         score = findViewById(R.id.score);
         pregunta = findViewById(R.id.pregunta);
 
-        updateQuestion();
+//        updateQuestion();
         ans1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

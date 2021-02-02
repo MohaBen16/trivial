@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.v1c,R.id.v2c,R.id.v3c,R.id.v4c,R.id.v5c,R.id.v6c,
             R.id.o1c,R.id.o2c,R.id.o3c,R.id.o4c,R.id.o5c,R.id.o6c,
             R.id.m1c,R.id.m2c,R.id.m3c,R.id.m4c,R.id.m5c,R.id.m6c,R.id.m7d,R.id.m7i,R.id.m8d,R.id.m8i,R.id.m9d,R.id.m9i,
-            R.id.n1c,R.id.n2c,R.id.n3c,R.id.n4c,R.id.n5c,R.id.n6c
+            R.id.n1c,R.id.n2c,R.id.n3c,R.id.n4c,R.id.n5c,R.id.n6c,R.id.b0c
     };
 
     Map<String,String> cMapa= new HashMap<String,String>();
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //Control de movimientos
 
-                        if (posFicha + nDado <= 9 && posCasilla  > posFicha) {
+                        if (posFicha + nDado <= 9 && posCasilla  > posFicha && posFicha <= 6 ) {
 
                             if (posCasilla == nDado + posFicha && (cCasilla.equals(cFicha) || cFicha.equals("0"))) {
                                 moverFicha(button);
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }else if( posFicha == 6 && nDado > 3) {
 
-                            if ((posCasilla == ((posFicha-nDado)+(posFicha+1))) && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1)))  && (dCasilla.equals("i"))))) {
+                            if ((posCasilla == (posFicha-nDado) && (cCasilla.equals(cFicha) || cCasilla.equals("b")))|| (posCasilla == ((posFicha-nDado)+(posFicha+1))) && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1)))  && (dCasilla.equals("i"))))) {
                                 moverFicha(button);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
@@ -186,9 +189,21 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 int res = getResources().getIdentifier("dado_"+nDado , "drawable", "com.example.trivial");
+                Animation anim = AnimationUtils.loadAnimation(getApplicationContext() ,R.anim.rotate);
+                iv_dado.startAnimation(anim);
                 iv_dado.setImageResource(res);
             }
         });
+    }
+
+    public void moveAnimation(final Button b){
+
+
+        Animation img = new TranslateAnimation(Animation.ABSOLUTE,150,Animation.ABSOLUTE,Animation.ABSOLUTE);
+        img.setDuration(3000);
+        img.setFillAfter(true);
+
+        b.startAnimation(img);
     }
 
     public void ocultarCasillas(){
@@ -211,11 +226,14 @@ public class MainActivity extends AppCompatActivity {
                     b_ficha1.setX(b.getX());
                     b_ficha1.setY(b.getY());
 
+                   // moveAnimation(b_ficha1);
+
                 }else if(turno == 2){
 
                     b_ficha2.setTag(String.valueOf(b.getResources().getResourceEntryName(b.getId())));
                     b_ficha2.setX(b.getX());
                     b_ficha2.setY(b.getY());
+                    //moveAnimation(b_ficha2);
                 }
                 ocultarCasillas();
                 obtenetPreguntas();
