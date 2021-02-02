@@ -1,6 +1,8 @@
 package com.example.trivial;
 
-public class Jugador {
+import java.io.Serializable;
+
+public class Jugador implements Serializable {
     private int id;
     private int id_partida;
     private boolean qamarillo;

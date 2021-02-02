@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
         /*OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
         opdb.SetPregunta(CategoriaPregunta.geografia,"¿Donde esta el rio Pisuerga?");
-        opdb.SetRespuesta(0,"Palencia",false);
-        opdb.SetRespuesta(0,"Valladolid",true);
-        opdb.SetRespuesta(0,"Paris",false);
-        opdb.SetRespuesta(0,"Madrid",false);
-        //opdb.SetPregunta(CategoriaPregunta.geografia,"¿De que pais es capital Paris?");
-        t_j1.setText(opdb.GetRespuestas(1).get(2).getTextorespuesta());*/
+        opdb.SetRespuesta(1,"Palencia",false);
+        opdb.SetRespuesta(1,"Valladolid",true);
+        opdb.SetRespuesta(1,"Paris",false);
+        opdb.SetRespuesta(1,"Madrid",false);*/
+
         //opdb.BorrarTodasPreguntas();
+        //opdb.BorrarTodasRespuestas();
 
         Toast.makeText(getApplicationContext(), "Lanzamiento de comienzo ", Toast.LENGTH_SHORT).show();
 
@@ -243,7 +243,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void obtenetPreguntas() {
         Intent intent = new Intent(this, Quiz.class);
-        intent.putExtra("categoria",CategoriaPregunta.geografia);
+        Pregunta pregunta = new Pregunta(1,CategoriaPregunta.geografia,"¿Donde esta el rio Pisuerga?");
+        intent.putExtra("pregunta",pregunta);
         startActivity(intent);
     }
 }

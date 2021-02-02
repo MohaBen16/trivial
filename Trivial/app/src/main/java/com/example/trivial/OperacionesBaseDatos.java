@@ -165,6 +165,13 @@ public final class OperacionesBaseDatos {
         return Respuestas;
     }
 
+    public void BorrarTodasRespuestas(){
+        SQLiteDatabase db = bDatos.getWritableDatabase();
+
+        db.execSQL("delete from respuesta");
+        db.close();
+    }
+
     public void SetPartida(boolean terminada) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 

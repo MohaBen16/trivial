@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="137090cc-af55-4dea-b37b-e59c370864af" name="Default Changelist" comment="" />
+    <list default="true" id="137090cc-af55-4dea-b37b-e59c370864af" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/BaseDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/BaseDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/OperacionesBaseDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/OperacionesBaseDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Partida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Pregunta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Pregunta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Respuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial/Respuesta.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,6 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ncRxx3TdpCf1wP3jUeilBhGght" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -18,7 +29,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Trivial" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Trivial/app/src/main/java/com/example/trivial" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gonza\AndroidStudioProjects\Git\Trivial\Trivial\app\src\main\java\com\example\trivial" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />

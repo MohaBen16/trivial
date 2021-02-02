@@ -1,8 +1,9 @@
 package com.example.trivial;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Partida {
+public class Partida implements Serializable {
     private int id;
     private boolean terminada;
     private ArrayList<Jugador> Jugadores;
