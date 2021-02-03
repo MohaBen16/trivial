@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int[] CASILLAS = {
             R.id.a1c,R.id.a2c,R.id.a3c,R.id.a4c,R.id.a5c,R.id.a6c,R.id.a7d,R.id.a7i,R.id.a8d,R.id.a8i,R.id.a9d,R.id.a9i,
             R.id.r1c,R.id.r2c,R.id.r3c,R.id.r4c,R.id.r5c,R.id.r6c,R.id.r7d,R.id.r7i,R.id.r8d,R.id.r8i,R.id.r9d,R.id.r9i,
-            R.id.v1c,R.id.v2c,R.id.v3c,R.id.v4c,R.id.v5c,R.id.v6c,
-            R.id.o1c,R.id.o2c,R.id.o3c,R.id.o4c,R.id.o5c,R.id.o6c,
+            R.id.v1c,R.id.v2c,R.id.v3c,R.id.v4c,R.id.v5c,R.id.v6c,R.id.v7d,R.id.v7i,R.id.v8d,R.id.v8i,R.id.v9d,R.id.v9i,
+            R.id.o1c,R.id.o2c,R.id.o3c,R.id.o4c,R.id.o5c,R.id.o6c,R.id.o7d,R.id.o7i,R.id.o8d,R.id.o8i,R.id.o9d,R.id.o9i,
             R.id.m1c,R.id.m2c,R.id.m3c,R.id.m4c,R.id.m5c,R.id.m6c,R.id.m7d,R.id.m7i,R.id.m8d,R.id.m8i,R.id.m9d,R.id.m9i,
-            R.id.n1c,R.id.n2c,R.id.n3c,R.id.n4c,R.id.n5c,R.id.n6c,R.id.b0c
+            R.id.n1c,R.id.n2c,R.id.n3c,R.id.n4c,R.id.n5c,R.id.n6c,R.id.n7d,R.id.n7i,R.id.n8d,R.id.n8i,R.id.n9d,R.id.n9i,
+            R.id.b0c
     };
 
     Map<String,String> cMapa= new HashMap<String,String>();
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }else if( posFicha > 6 ) {
 
-                            if ((posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
+                            if ((posCasilla == (posFicha-((posFicha-5)+(posFicha-7)))) || (posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
                                 moverFicha(button);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
