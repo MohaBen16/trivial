@@ -72,13 +72,17 @@ public final class OperacionesBaseDatos {
         Random r1 = new Random();
         int r = r1.nextInt(fila.getCount());
 
-        if (fila.moveToFirst()) {
+        if(fila.moveToPosition(r)){
+            pregunta = new Pregunta(fila.getInt(0), categoria, fila.getString(2));
+        }
+
+        /*if (fila.moveToFirst()) {
             do {
                if (fila.getPosition() == r) {
-                    pregunta = new Pregunta(fila.getInt(1), categoria, fila.getString(2));
-                }
+                    pregunta = new Pregunta(fila.getInt(0), categoria, fila.getString(2));
+               }
             } while (fila.moveToNext());
-        }
+        }*/
 
         db.close();
 
