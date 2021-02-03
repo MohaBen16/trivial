@@ -20,7 +20,9 @@ public class Quiz extends AppCompatActivity {
     TextView score, pregunta;
 
     Pregunta objpregunta;
+    boolean esQuesito;
     ArrayList<Respuesta> respuestas;
+    ArrayList<Jugador> jugadores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class Quiz extends AppCompatActivity {
 
         //Recoger Objeto Pregunta de la casilla en la que cae
         objpregunta = (Pregunta) getIntent().getSerializableExtra("pregunta");
+        esQuesito = getIntent().getBooleanExtra("esQuesito",false);
+        jugadores = (ArrayList<Jugador>) getIntent().getSerializableExtra("jugadores");
 
         //Coger el array de respuestas del objeto Pregunta
         OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
@@ -54,9 +58,9 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (respuestas.get(0).isCorrecta()) {
-                    onBackPressed();
+                    preguntaAcertada();
                 } else {
-                    Toast.makeText(Quiz.this, "NOOOOOO", Toast.LENGTH_SHORT).show();
+                    preguntaEquivocada();
                 }
             }
         });
@@ -64,9 +68,9 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (respuestas.get(1).isCorrecta()) {
-                    onBackPressed();
+                    preguntaAcertada();
                 } else {
-                    Toast.makeText(Quiz.this, "NOOOOOO", Toast.LENGTH_SHORT).show();
+                    preguntaEquivocada();
                 }
             }
         });
@@ -74,9 +78,9 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (respuestas.get(2).isCorrecta()) {
-                    onBackPressed();
+                    preguntaAcertada();
                 } else {
-                    Toast.makeText(Quiz.this, "NOOOOOO", Toast.LENGTH_SHORT).show();
+                    preguntaEquivocada();
                 }
             }
         });
@@ -84,11 +88,38 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (respuestas.get(3).isCorrecta()) {
-                    onBackPressed();
+                    preguntaAcertada();
                 } else {
-                    Toast.makeText(Quiz.this, "NOOOOOO", Toast.LENGTH_SHORT).show();
+                    preguntaEquivocada();
                 }
             }
         });
+    }
+
+    private void preguntaAcertada(){
+        Toast.makeText(Quiz.this, "Acertaste", Toast.LENGTH_SHORT).show();
+        /*for(Jugador jugador : jugadores){
+            if(jugador.isTurno()){
+
+            }
+        }*/
+
+        Intent intent = new Intent(this,Juego.class);
+        intent.putExtra("jugadores",jugadores);
+        startActivity(intent);
+    }
+
+    private void preguntaEquivocada(){
+        Toast.makeText(Quiz.this, "Fallaste", Toast.LENGTH_SHORT).show();
+        for(Jugador jugador : jugadores){
+            if(jugador.isTurno()){
+                jugador.setTurno(false);
+                jugadores.get(jugador.getId()).setTurno(true);
+            }
+        }
+
+        Intent intent = new Intent(this,Juego.class);
+        intent.putExtra("jugadores",jugadores);
+        startActivity(intent);
     }
 }

@@ -47,6 +47,7 @@ public class Juego extends AppCompatActivity {
 
     int posFicha, turno = 0, tirar = 1 , n = 0;
     String cFicha;
+    ArrayList<Jugador> jugadores;
 
     private float posX,posY;
 
@@ -72,35 +73,17 @@ public class Juego extends AppCompatActivity {
         t_j1 = findViewById(R.id.tJugador);
         t_j2 = findViewById(R.id.tJugador2);
 
-        //OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+        jugadores = (ArrayList<Jugador>) getIntent().getSerializableExtra("jugadores");
 
-        /*opdb.SetPregunta(CategoriaPregunta.geografia,"¿Por donde pasa el rio Pisuerga?");
-        opdb.SetRespuesta(1,"Palencia",false);
-        opdb.SetRespuesta(1,"Valladolid",true);
-        opdb.SetRespuesta(1,"Paris",false);
-        opdb.SetRespuesta(1,"Madrid",false);
+        try {
+            jugadores.size();
+        }catch (NullPointerException NPE) {
+            Toast.makeText(this, "vacio", Toast.LENGTH_SHORT).show();
+            jugadores = new ArrayList<>();
+            //Insertar codigo de inicio
+        }
 
-        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que rio pasa por Sevilla?");
-        opdb.SetRespuesta(2,"Tajo",false);
-        opdb.SetRespuesta(2,"Miño",false);
-        opdb.SetRespuesta(2,"Guadalquivir",true);
-        opdb.SetRespuesta(2,"Guadiana",false);
-
-        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que pico es el mas alto de España?");
-        opdb.SetRespuesta(3,"Teide",true);
-        opdb.SetRespuesta(3,"Peña prieta",false);
-        opdb.SetRespuesta(3,"Cura vacas",false);
-        opdb.SetRespuesta(3,"Mulhacen",false);
-
-        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que pico es el mas alto de la peninsula Iberica?");
-        opdb.SetRespuesta(4,"Teide",false);
-        opdb.SetRespuesta(4,"Peña prieta",false);
-        opdb.SetRespuesta(4,"Cura vacas",false);
-        opdb.SetRespuesta(4,"Mulhacen",true);*/
-
-        //opdb.BorrarTodasPreguntas();
-        //opdb.BorrarTodasRespuestas();
-
+        InsertarValoresbd ivd = new InsertarValoresbd(this);
         Toast.makeText(getApplicationContext(), "Lanzamiento de comienzo ", Toast.LENGTH_SHORT).show();
 
         b_dado.setOnClickListener(new View.OnClickListener() {
@@ -266,12 +249,15 @@ public class Juego extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext()," "+String.valueOf(b.getTag().toString().charAt(0)),Toast.LENGTH_SHORT).show();
                 //El metodo de abajo le pasamos la letra correspondiente a categoria geografia
-                //obtenetPreguntas(String.valueOf(b.getTag().toString().charAt(0)));
+                ArrayList<Jugador> jugadores = new ArrayList<>();
+                jugadores.add(new Jugador(1,1,"moha",true,"1234",false,false,false,false,false,false,false));
+                jugadores.add(new Jugador(2,2,"gonza",false,"4321",false,false,false,false,false,false,false));
+                obtenerPreguntas("g",false,jugadores);
             }
         });
     }
 
-    private void obtenetPreguntas(String categoria) {
+    private void obtenerPreguntas(String categoria, boolean esQuesito, ArrayList<Jugador> jugadores) {
         CategoriaPregunta catpregunta = CategoriaPregunta.geografia;
         if(categoria == "h")
             catpregunta = CategoriaPregunta.historia;
@@ -289,6 +275,8 @@ public class Juego extends AppCompatActivity {
 
         Intent intent = new Intent(this, Quiz.class);
         intent.putExtra("pregunta",pregunta);
+        intent.putExtra("esQuesito",esQuesito);
+        intent.putExtra("jugadores",jugadores);
         startActivity(intent);
     }
 
