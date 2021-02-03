@@ -1,6 +1,8 @@
 package com.example.trivial;
 
-public class Pregunta {
+import java.io.Serializable;
+
+public class Pregunta implements Serializable {
     private int id;
     private CategoriaPregunta categoriaPregunta;
     private String textopregunta;

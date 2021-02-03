@@ -67,15 +67,34 @@ public class MainActivity extends AppCompatActivity {
         t_j1 = findViewById(R.id.tJugador);
         t_j2 = findViewById(R.id.tJugador2);
 
-        /*OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
-        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Donde esta el rio Pisuerga?");
-        opdb.SetRespuesta(0,"Palencia",false);
-        opdb.SetRespuesta(0,"Valladolid",true);
-        opdb.SetRespuesta(0,"Paris",false);
-        opdb.SetRespuesta(0,"Madrid",false);
-        //opdb.SetPregunta(CategoriaPregunta.geografia,"¿De que pais es capital Paris?");
-        t_j1.setText(opdb.GetRespuestas(1).get(2).getTextorespuesta());*/
+        //OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+
+        /*opdb.SetPregunta(CategoriaPregunta.geografia,"¿Por donde pasa el rio Pisuerga?");
+        opdb.SetRespuesta(1,"Palencia",false);
+        opdb.SetRespuesta(1,"Valladolid",true);
+        opdb.SetRespuesta(1,"Paris",false);
+        opdb.SetRespuesta(1,"Madrid",false);
+
+        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que rio pasa por Sevilla?");
+        opdb.SetRespuesta(2,"Tajo",false);
+        opdb.SetRespuesta(2,"Miño",false);
+        opdb.SetRespuesta(2,"Guadalquivir",true);
+        opdb.SetRespuesta(2,"Guadiana",false);
+
+        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que pico es el mas alto de España?");
+        opdb.SetRespuesta(3,"Teide",true);
+        opdb.SetRespuesta(3,"Peña prieta",false);
+        opdb.SetRespuesta(3,"Cura vacas",false);
+        opdb.SetRespuesta(3,"Mulhacen",false);
+
+        opdb.SetPregunta(CategoriaPregunta.geografia,"¿Que pico es el mas alto de la peninsula Iberica?");
+        opdb.SetRespuesta(4,"Teide",false);
+        opdb.SetRespuesta(4,"Peña prieta",false);
+        opdb.SetRespuesta(4,"Cura vacas",false);
+        opdb.SetRespuesta(4,"Mulhacen",true);*/
+
         //opdb.BorrarTodasPreguntas();
+        //opdb.BorrarTodasRespuestas();
 
         Toast.makeText(getApplicationContext(), "Lanzamiento de comienzo ", Toast.LENGTH_SHORT).show();
 
@@ -100,10 +119,10 @@ public class MainActivity extends AppCompatActivity {
 
                     if (n > nDado) {
                         turno = 1;
-                        Toast.makeText(getApplicationContext(), "Compienza el jugador " + turno, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Empieza el jugador " + turno, Toast.LENGTH_SHORT).show();
                     }else {
                         turno = 2;
-                        Toast.makeText(getApplicationContext(), "Compienza el jugador " + turno, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Empieza el jugador " + turno, Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
@@ -237,14 +256,30 @@ public class MainActivity extends AppCompatActivity {
                     //moveAnimation(b_ficha2);
                 }
                 ocultarCasillas();
-                obtenetPreguntas();
+                //El metodo de abajo le pasamos la letra correspondiente a categoria geografia
+                obtenetPreguntas("g");
             }
         });
     }
 
-    private void obtenetPreguntas() {
+    private void obtenetPreguntas(String categoria) {
+        CategoriaPregunta catpregunta = CategoriaPregunta.geografia;
+        if(categoria == "h")
+            catpregunta = CategoriaPregunta.historia;
+        else if(categoria == "a")
+            catpregunta = CategoriaPregunta.arte;
+        else if(categoria == "d")
+            catpregunta = CategoriaPregunta.deportes;
+        else if(categoria == "c")
+            catpregunta = CategoriaPregunta.ciencia;
+        else if(categoria == "l")
+            catpregunta = CategoriaPregunta.lengua;
+
+        OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+        Pregunta pregunta = opdb.GetPregunta(catpregunta);
+
         Intent intent = new Intent(this, Quiz.class);
-        intent.putExtra("categoria",CategoriaPregunta.geografia);
+        intent.putExtra("pregunta",pregunta);
         startActivity(intent);
     }
 }

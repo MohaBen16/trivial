@@ -59,7 +59,7 @@ public class BaseDatos extends SQLiteOpenHelper {
                 "id integer primary key," +
                 "integer bterminada)"
         );
-
+        //nombre partida
         db.execSQL("create table if not exists jugador(" +
                 "id integer primary key," +
                 "id_partida integer," +
@@ -75,6 +75,10 @@ public class BaseDatos extends SQLiteOpenHelper {
                 "        REFERENCES partida(id)" +
                 "        ON DELETE CASCADE)"
         );
+        //turno boolean
+        //nombre jugador
+        //posicion por pscion
+
     }
 
     @Override

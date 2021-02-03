@@ -1,8 +1,13 @@
 package com.example.trivial;
 
-public class Jugador {
+import java.io.Serializable;
+
+public class Jugador implements Serializable {
     private int id;
     private int id_partida;
+    private String nombre;
+    private boolean turno;
+    private String posicion;
     private boolean qamarillo;
     private boolean qrosa;
     private boolean qverde;
@@ -11,9 +16,12 @@ public class Jugador {
     private boolean qnaranja;
     private boolean ganador;
 
-    public Jugador(int id, int id_partida, boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
+    public Jugador(int id, int id_partida, String nombre, boolean turno, String posicion, boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
         this.id = id;
         this.id_partida = id_partida;
+        this.nombre = nombre;
+        this.turno = turno;
+        this.posicion = posicion;
         this.qamarillo = qamarillo;
         this.qrosa = qrosa;
         this.qverde = qverde;
@@ -38,6 +46,18 @@ public class Jugador {
     public void setId_partida(int id_partida) {
         this.id_partida = id_partida;
     }
+
+    public String getNombre() { return nombre; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public boolean isTurno() { return turno; }
+
+    public void setTurno(boolean turno) { this.turno = turno; }
+
+    public String getPosicion() { return posicion; }
+
+    public void setPosicion(String posicion) { this.posicion = posicion; }
 
     public boolean isQamarillo() {
         return qamarillo;
