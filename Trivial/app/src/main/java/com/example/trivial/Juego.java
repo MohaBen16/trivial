@@ -78,10 +78,12 @@ public class Juego extends AppCompatActivity {
 
         try {
             jugadores.size();
+            b_ficha1.setTag(jugadores.get(0).getPosicion());
+            b_ficha2.setTag(jugadores.get(1).getPosicion());
         }catch (NullPointerException NPE) {
-            Toast.makeText(this, "vacio", Toast.LENGTH_SHORT).show();
             jugadores = new ArrayList<>();
-            //Insertar codigo de inicio
+            jugadores.add(new Jugador(1,1,"moha",true,"b0c",false,false,false,false,false,false,false));
+            jugadores.add(new Jugador(2,2,"gonza",false,"b0c",false,false,false,false,false,false,false));
         }
 
         InsertarValoresbd ivd = new InsertarValoresbd(this);
@@ -189,7 +191,7 @@ public class Juego extends AppCompatActivity {
                         }else if( posFicha > 6 ) {
 
                             if (posCasilla == (nDado+2) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("d"))) || ((posCasilla == (posFicha-((posFicha-5)+(posFicha-7)))+nDado && (cCasilla.equals(cFicha) && dCasilla.equals("i")) )) || (posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
-                                   moverFicha(button);
+                                moverFicha(button);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
@@ -239,10 +241,16 @@ public class Juego extends AppCompatActivity {
                 ocultarCasillas();
 
                 Toast.makeText(getApplicationContext()," "+String.valueOf(b.getTag().toString().charAt(0)),Toast.LENGTH_SHORT).show();
-                //El metodo de abajo le pasamos la letra correspondiente a categoria geografia
-                final ArrayList<Jugador> jugadores = new ArrayList<>();
-                jugadores.add(new Jugador(1,1,"moha",true,String.valueOf(b_ficha1.getTag()),false,false,false,false,false,false,false));
-                jugadores.add(new Jugador(2,2,"gonza",false,String.valueOf(b_ficha2.getTag()),false,false,false,false,false,false,false));
+
+                for(Jugador jugador : jugadores){
+                    if(jugador.isTurno())
+                        jugador.setPosicion(String.valueOf(b.getId()));
+                }
+
+                boolean esQuesito = false;
+                if(posFicha == 6) esQuesito = true;
+
+                //obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),esQuesito,jugadores);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -260,32 +268,25 @@ public class Juego extends AppCompatActivity {
 
     private void obtenerPreguntas(String categoria, boolean esQuesito, ArrayList<Jugador> jugadores) {
         CategoriaPregunta catpregunta = CategoriaPregunta.geografia;
-
-
-        if(categoria == "h")
+        if(categoria.equals("h"))
             catpregunta = CategoriaPregunta.historia;
-        else if(categoria == "a")
+        else if(categoria.equals("a"))
             catpregunta = CategoriaPregunta.arte;
-        else if(categoria == "d")
+        else if(categoria.equals("o"))
             catpregunta = CategoriaPregunta.deportes;
-        else if(categoria == "c")
+        else if(categoria.equals("c"))
             catpregunta = CategoriaPregunta.ciencia;
-        else if(categoria == "l")
+        else if(categoria.equals("e"))
             catpregunta = CategoriaPregunta.lengua;
 
         OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
         Pregunta pregunta = opdb.GetPregunta(catpregunta);
 
-        if(!categoria.equals("t")){
-
-            Intent intent = new Intent(this, Quiz.class);
-            intent.putExtra("pregunta",pregunta);
-            intent.putExtra("esQuesito",esQuesito);
-            intent.putExtra("jugadores",jugadores);
-            startActivity(intent);
-
-        }
-
+        Intent intent = new Intent(this, Quiz.class);
+        intent.putExtra("pregunta",pregunta);
+        intent.putExtra("esQuesito",esQuesito);
+        intent.putExtra("jugadores",jugadores);
+        startActivity(intent);
     }
 
     public void clasificacion(View v){

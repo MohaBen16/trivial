@@ -98,11 +98,16 @@ public class Quiz extends AppCompatActivity {
 
     private void preguntaAcertada(){
         Toast.makeText(Quiz.this, "Acertaste", Toast.LENGTH_SHORT).show();
-        /*for(Jugador jugador : jugadores){
-            if(jugador.isTurno()){
-
+        for(Jugador jugador : jugadores){
+            if(jugador.isTurno() && esQuesito){
+                if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.geografia)) jugador.setQazul(true);
+                else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.historia)) jugador.setQamarillo(true);
+                else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.arte)) jugador.setQmarron(true);
+                else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.deportes)) jugador.setQnaranja(true);
+                else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.ciencia)) jugador.setQverde(true);
+                else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.lengua)) jugador.setQrosa(true);
             }
-        }*/
+        }
 
         Intent intent = new Intent(this,Juego.class);
         intent.putExtra("jugadores",jugadores);
@@ -112,10 +117,8 @@ public class Quiz extends AppCompatActivity {
     private void preguntaEquivocada(){
         Toast.makeText(Quiz.this, "Fallaste", Toast.LENGTH_SHORT).show();
         for(Jugador jugador : jugadores){
-            if(jugador.isTurno()){
-                jugador.setTurno(false);
-                jugadores.get(jugador.getId()).setTurno(true);
-            }
+            if(jugador.isTurno()) jugador.setTurno(false);
+            else jugador.setTurno(true);
         }
 
         Intent intent = new Intent(this,Juego.class);

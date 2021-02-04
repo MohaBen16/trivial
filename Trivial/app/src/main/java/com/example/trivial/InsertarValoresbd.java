@@ -76,6 +76,34 @@ public class InsertarValoresbd {
         opdb.SetRespuesta(11,"116",true);
         opdb.SetRespuesta(11,"95",false);
         opdb.SetRespuesta(11,"101",false);
+
+
+        opdb.SetPregunta(CategoriaPregunta.arte,"¿Quien pinto la mona lisa?");
+        opdb.SetRespuesta(12,"Donatello",false);
+        opdb.SetRespuesta(12,"Picasso",false);
+        opdb.SetRespuesta(12,"Leonardo Da Vinci",true);
+        opdb.SetRespuesta(12,"Van gogh",false);
+
+
+        opdb.SetPregunta(CategoriaPregunta.deportes,"¿Donde gano España su primera Eurocopa?");
+        opdb.SetRespuesta(13,"España",true);
+        opdb.SetRespuesta(13,"Austria y Suiza",false);
+        opdb.SetRespuesta(13,"Polonia y Ucrania",false);
+        opdb.SetRespuesta(13,"Francia",false);
+
+
+        opdb.SetPregunta(CategoriaPregunta.ciencia," ¿Cuál es la velocidad de la luz?");
+        opdb.SetRespuesta(14,"325.743.187 km/s",false);
+        opdb.SetRespuesta(14,"300.000.000 km/s",false);
+        opdb.SetRespuesta(14,"400.000.000 km/s",false);
+        opdb.SetRespuesta(14,"299.792.458 km/s",true);
+
+
+        opdb.SetPregunta(CategoriaPregunta.lengua,"¿Quién fue el famoso cantante del grupo musical Queen?");
+        opdb.SetRespuesta(15,"325.743.187 km/s",false);
+        opdb.SetRespuesta(15,"Freddie Mercury",true);
+        opdb.SetRespuesta(15,"400.000.000 km/s",false);
+        opdb.SetRespuesta(15,"299.792.458 km/s",false);
     }
 
 }
