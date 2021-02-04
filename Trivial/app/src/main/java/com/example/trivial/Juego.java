@@ -247,16 +247,13 @@ public class Juego extends AppCompatActivity {
                         jugador.setPosicion(String.valueOf(b.getId()));
                 }
 
-                boolean esQuesito = false;
-                if(posFicha == 6) esQuesito = true;
-
-                //obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),esQuesito,jugadores);
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
+                        boolean esQuesito = false;
+                        if(posFicha == 6) esQuesito = true;
 
-                        obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),false,jugadores);
+                        obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),esQuesito,jugadores);
                     }
                 }, 1000);
 
