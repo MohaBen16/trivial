@@ -78,12 +78,20 @@ public class Juego extends AppCompatActivity {
 
         try {
             jugadores.size();
-            b_ficha1.setTag(jugadores.get(0).getPosicion());
-            b_ficha2.setTag(jugadores.get(1).getPosicion());
+            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+            opdb.BorrarTodasPartidas();
+            opdb.BorrarTodosJugadores();
+            opdb.SetPartida(false,"partidaprueba1");
+            opdb.SetJugador(jugadores.get(0).getId_partida(),jugadores.get(0).getNombre(),jugadores.get(0).isTurno(),jugadores.get(0).getPosicion(),jugadores.get(0).isQamarillo(),jugadores.get(0).isQrosa(),jugadores.get(0).isQverde(),jugadores.get(0).isQmarron(),jugadores.get(0).isQazul(),jugadores.get(0).isQnaranja(),jugadores.get(0).isGanador());
+            opdb.SetJugador(jugadores.get(1).getId_partida(),jugadores.get(1).getNombre(),jugadores.get(1).isTurno(),jugadores.get(1).getPosicion(),jugadores.get(1).isQamarillo(),jugadores.get(1).isQrosa(),jugadores.get(1).isQverde(),jugadores.get(1).isQmarron(),jugadores.get(1).isQazul(),jugadores.get(1).isQnaranja(),jugadores.get(1).isGanador());
         }catch (NullPointerException NPE) {
             jugadores = new ArrayList<>();
-            jugadores.add(new Jugador(1,1,"moha",true,"b0c",false,false,false,false,false,false,false));
-            jugadores.add(new Jugador(2,2,"gonza",false,"b0c",false,false,false,false,false,false,false));
+            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+            opdb.BorrarTodasPartidas();
+            opdb.BorrarTodosJugadores();
+            opdb.SetPartida(false,"partidaprueba1");
+            jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"b0c",false,false,false,false,false,false,false));
+            jugadores.add(new Jugador(2,1,getIntent().getStringExtra("jugador2"),false,"b0c",false,false,false,false,false,false,false));
         }
 
         InsertarValoresbd ivd = new InsertarValoresbd(this);

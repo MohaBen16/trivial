@@ -21,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void jugar(View v){
-
         Intent intent = new Intent(this, Juego.class);
         intent.putExtra("jugador1",et_j1.getText());
         intent.putExtra("jugador2",et_j2.getText());
         startActivity(intent);
     }
+
+    public void historial(View v){
+        Intent intent = new Intent(this, Historial.class);
+        startActivity(intent);
+    }
+
 }

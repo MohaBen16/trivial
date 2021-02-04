@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class BaseDatos extends SQLiteOpenHelper {
 
-    private static final String NOMBRE_BASE_DATOS = "trivial";
+    private static final String NOMBRE_BASE_DATOS = "trivi";
 
     private static final int VERSION_ACTUAL = 1;
 
@@ -57,13 +57,16 @@ public class BaseDatos extends SQLiteOpenHelper {
 
         db.execSQL("create table if not exists partida(" +
                 "id integer primary key," +
+                "nombrepartida text," +
                 "integer bterminada)"
         );
-        //nombre partida
+
         db.execSQL("create table if not exists jugador(" +
                 "id integer primary key," +
                 "id_partida integer," +
-                "poscion text," +
+                "nombre text," +
+                "bturno integer," +
+                "posicion text," +
                 "bqamarillo integer,"+
                 "bqrosa integer,"+
                 "bqverde integer,"+
@@ -75,10 +78,6 @@ public class BaseDatos extends SQLiteOpenHelper {
                 "        REFERENCES partida(id)" +
                 "        ON DELETE CASCADE)"
         );
-        //turno boolean
-        //nombre jugador
-        //posicion por pscion
-
     }
 
     @Override
