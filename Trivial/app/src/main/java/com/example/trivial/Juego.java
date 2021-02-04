@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -178,7 +179,7 @@ public class Juego extends AppCompatActivity {
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
-                        }else if( posFicha == 6 && nDado > 3) {
+                        }else if( posFicha == 6) {
 
                             if ((posCasilla == (posFicha-nDado) && (cCasilla.equals(cFicha) || cCasilla.equals("b")))|| (posCasilla == ((posFicha-nDado)+(posFicha+1))) && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1)))  && (dCasilla.equals("i"))))) {
                                 moverFicha(button);
@@ -187,8 +188,8 @@ public class Juego extends AppCompatActivity {
                             }
                         }else if( posFicha > 6 ) {
 
-                            if ((posCasilla == (posFicha-((posFicha-5)+(posFicha-7)))) || (posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
-                                moverFicha(button);
+                            if (posCasilla == (nDado+2) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("d"))) || ((posCasilla == (posFicha-((posFicha-5)+(posFicha-7)))+nDado && (cCasilla.equals(cFicha) && dCasilla.equals("i")) )) || (posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
+                                   moverFicha(button);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
@@ -200,18 +201,9 @@ public class Juego extends AppCompatActivity {
                 anim = AnimationUtils.loadAnimation(getApplicationContext() ,R.anim.rotate);
                 iv_dado.startAnimation(anim);
                 iv_dado.setImageResource(res);
+                iv_dado.setEnabled(false);
             }
         });
-    }
-
-    public void moveAnimation(final Button b){
-
-
-        Animation img = new TranslateAnimation(Animation.ABSOLUTE,150,Animation.ABSOLUTE,Animation.ABSOLUTE);
-        img.setDuration(3000);
-        img.setFillAfter(true);
-
-        b.startAnimation(img);
     }
 
     public void ocultarCasillas(){
@@ -229,7 +221,6 @@ public class Juego extends AppCompatActivity {
             public void onClick(View v) {
 
                 anim = AnimationUtils.loadAnimation(getApplicationContext() ,R.anim.rotate);
-
 
                 if(turno == 1){
 
@@ -249,16 +240,28 @@ public class Juego extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext()," "+String.valueOf(b.getTag().toString().charAt(0)),Toast.LENGTH_SHORT).show();
                 //El metodo de abajo le pasamos la letra correspondiente a categoria geografia
-                ArrayList<Jugador> jugadores = new ArrayList<>();
-                jugadores.add(new Jugador(1,1,"moha",true,"1234",false,false,false,false,false,false,false));
-                jugadores.add(new Jugador(2,2,"gonza",false,"4321",false,false,false,false,false,false,false));
-                obtenerPreguntas("g",false,jugadores);
+                final ArrayList<Jugador> jugadores = new ArrayList<>();
+                jugadores.add(new Jugador(1,1,"moha",true,String.valueOf(b_ficha1.getTag()),false,false,false,false,false,false,false));
+                jugadores.add(new Jugador(2,2,"gonza",false,String.valueOf(b_ficha2.getTag()),false,false,false,false,false,false,false));
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),false,jugadores);
+                    }
+                }, 1000);
+
+                iv_dado.setEnabled(true);
+
             }
         });
     }
 
     private void obtenerPreguntas(String categoria, boolean esQuesito, ArrayList<Jugador> jugadores) {
         CategoriaPregunta catpregunta = CategoriaPregunta.geografia;
+
+
         if(categoria == "h")
             catpregunta = CategoriaPregunta.historia;
         else if(categoria == "a")
@@ -273,11 +276,16 @@ public class Juego extends AppCompatActivity {
         OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
         Pregunta pregunta = opdb.GetPregunta(catpregunta);
 
-        Intent intent = new Intent(this, Quiz.class);
-        intent.putExtra("pregunta",pregunta);
-        intent.putExtra("esQuesito",esQuesito);
-        intent.putExtra("jugadores",jugadores);
-        startActivity(intent);
+        if(!categoria.equals("t")){
+
+            Intent intent = new Intent(this, Quiz.class);
+            intent.putExtra("pregunta",pregunta);
+            intent.putExtra("esQuesito",esQuesito);
+            intent.putExtra("jugadores",jugadores);
+            startActivity(intent);
+
+        }
+
     }
 
     public void clasificacion(View v){
