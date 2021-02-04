@@ -100,6 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/border3"
+        android:onClick="historial"
         android:text="Recuperar Partdida"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"

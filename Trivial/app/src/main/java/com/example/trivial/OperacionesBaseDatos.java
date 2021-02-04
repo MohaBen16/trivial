@@ -176,7 +176,7 @@ public final class OperacionesBaseDatos {
         db.close();
     }
 
-    public void SetPartida(boolean terminada) {
+    public void SetPartida(boolean terminada,String nombrepartida) {
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
         Cursor fila = db.rawQuery("Select id from partida",null);
@@ -188,37 +188,49 @@ public final class OperacionesBaseDatos {
             } while (fila.moveToNext());
         }
 
+        int iterminada = 0;
+        if(terminada == false) iterminada = 1;
+
         ContentValues registro = new ContentValues();
         registro.put("id",id);
-        registro.put("bterminada", terminada);
+        registro.put("nombrepartida",nombrepartida);
+        //registro.put("bterminada", iterminada);
 
         db.insert("partida", null, registro);
         db.close();
     }
 
-    /*public Partida GetPartida() {
-        Partida partida = null;
+    public ArrayList<Partida> GetPartida() {
+        ArrayList<Partida> partidas = new ArrayList<Partida>();
         SQLiteDatabase db = bDatos.getReadableDatabase();
 
-        Cursor fila = db.rawQuery("select id,terminada from partida", null);
+        //bterminada
+        Cursor fila = db.rawQuery("select id,nombrepartida from partida", null);
 
         if (fila.moveToFirst()) {
             do {
-                boolean correcta = false;
-                if(fila.getInt(2) == 0) correcta = true;
-                partida = new Partida(fila.getInt(1),correcta);
+                //boolean correcta = false;
+                //if(fila.getInt(2) == 0) correcta = true;
+                partidas.add(new Partida(fila.getInt(0),fila.getString(1),false,GetJugador(fila.getInt(0))));
             } while (fila.moveToNext());
         }
 
         db.close();
 
-        return Respuestas;
-    }*/
+        return partidas;
+    }
 
-    public void SetJugador(int id_partida,String poscion,boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
+    public void BorrarTodasPartidas(){
         SQLiteDatabase db = bDatos.getWritableDatabase();
 
-        //PASAR BOLEAN A INT
+        db.execSQL("delete from partida");
+        db.close();
+    }
+
+    public void SetJugador(int id_partida, String nombre, boolean turno, String posicion, boolean qamarillo, boolean qrosa, boolean qverde, boolean qmarron, boolean qazul, boolean qnaranja, boolean ganador) {
+        SQLiteDatabase db = bDatos.getWritableDatabase();
+
+        int iturno = 0,iamarillo = 0,irosa = 0,iverde = 0,imarron = 0,iazul = 0,inaranja = 0,iganador = 0;
 
         Cursor fila = db.rawQuery("Select id from jugador",null);
 
@@ -229,19 +241,72 @@ public final class OperacionesBaseDatos {
             } while (fila.moveToNext());
         }
 
+        if(turno == false) iturno = 1;
+        if(qamarillo == false) iamarillo = 1;
+        if(qrosa == false) irosa = 1;
+        if(qverde == false) iverde = 1;
+        if(qmarron == false) imarron = 1;
+        if(qazul == false) iazul = 1;
+        if(qnaranja == false) inaranja = 1;
+        if(ganador == false) iganador = 1;
+
         ContentValues registro = new ContentValues();
         registro.put("id",id);
-        registro.put("poscion",poscion);
         registro.put("id_partida", id_partida);
-        registro.put("bqamarillo", qamarillo);
-        registro.put("bqrosa", qrosa);
-        registro.put("bqverde", qverde);
-        registro.put("bqmarron", qmarron);
-        registro.put("bqazul", qazul);
-        registro.put("bqnaranja", qnaranja);
-        registro.put("bganador", ganador);
+        registro.put("nombre",nombre);
+        registro.put("bturno",iturno);
+        registro.put("posicion",posicion);
+        registro.put("bqamarillo", iamarillo);
+        registro.put("bqrosa", irosa);
+        registro.put("bqverde", iverde);
+        registro.put("bqmarron", imarron);
+        registro.put("bqazul", iazul);
+        registro.put("bqnaranja", inaranja);
+        registro.put("bganador", iganador);
 
         db.insert("jugador", null, registro);
+        db.close();
+    }
+
+    public ArrayList<Jugador> GetJugador(int id_partida){
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+        SQLiteDatabase db = bDatos.getReadableDatabase();
+
+        Cursor fila = db.rawQuery("select id,id_partida,nombre,bturno,posicion,bqamarillo,bqrosa,bqverde,bqmarron,bqazul,bqnaranja,bganador from jugador where id_partida = '" + id_partida + "'", null);
+
+        if (fila.moveToFirst()) {
+            do {
+                boolean turno = false;
+                boolean qamarillo = false;
+                boolean qrosa = false;
+                boolean qverde = false;
+                boolean qmarron = false;
+                boolean qazul = false;
+                boolean qnaranja = false;
+                boolean ganador = false;
+
+                if(fila.getInt(3) == 0) turno = true;
+                if(fila.getInt(5) == 0) qamarillo = true;
+                if(fila.getInt(6) == 0) qrosa = true;
+                if(fila.getInt(7) == 0) qverde = true;
+                if(fila.getInt(8) == 0) qmarron = true;
+                if(fila.getInt(9) == 0) qazul = true;
+                if(fila.getInt(10) == 0) qnaranja = true;
+                if(fila.getInt(11) == 0) ganador = true;
+
+                jugadores.add(new Jugador(fila.getInt(0),id_partida,fila.getString(2),turno,fila.getString(4),qamarillo,qrosa,qverde,qmarron,qazul,qnaranja,ganador));
+            } while (fila.moveToNext());
+        }
+
+        db.close();
+
+        return jugadores;
+    }
+
+    public void BorrarTodosJugadores(){
+        SQLiteDatabase db = bDatos.getWritableDatabase();
+
+        db.execSQL("delete from jugador");
         db.close();
     }
 
