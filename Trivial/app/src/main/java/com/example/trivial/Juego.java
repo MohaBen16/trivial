@@ -82,7 +82,13 @@ public class Juego extends AppCompatActivity {
         try{
 
             jugadores.size();
-<<<<<<< HEAD
+
+            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+            opdb.BorrarTodasPartidas();
+            opdb.BorrarTodosJugadores();
+            opdb.SetPartida(false,"partidaprueba1");
+            opdb.SetJugador(jugadores.get(0).getId_partida(),jugadores.get(0).getNombre(),jugadores.get(0).isTurno(),jugadores.get(0).getPosicion(),jugadores.get(0).isQamarillo(),jugadores.get(0).isQrosa(),jugadores.get(0).isQverde(),jugadores.get(0).isQmarron(),jugadores.get(0).isQazul(),jugadores.get(0).isQnaranja(),jugadores.get(0).isGanador());
+            opdb.SetJugador(jugadores.get(1).getId_partida(),jugadores.get(1).getNombre(),jugadores.get(1).isTurno(),jugadores.get(1).getPosicion(),jugadores.get(1).isQamarillo(),jugadores.get(1).isQrosa(),jugadores.get(1).isQverde(),jugadores.get(1).isQmarron(),jugadores.get(1).isQazul(),jugadores.get(1).isQnaranja(),jugadores.get(1).isGanador());
 
             tirar = 3;
 
@@ -120,27 +126,14 @@ public class Juego extends AppCompatActivity {
             }
 
 
-        }catch (NullPointerException np){
-
-            jugadores = new ArrayList<>();
-            jugadores.add(new Jugador(1,1,"Moha",true,"1000235",false,false,false,false,false,false,false));
-            jugadores.add(new Jugador(2,2,"Gonza",false,"1000234",false,false,false,false,false,false,false));
-=======
-            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
-            opdb.BorrarTodasPartidas();
-            opdb.BorrarTodosJugadores();
-            opdb.SetPartida(false,"partidaprueba1");
-            opdb.SetJugador(jugadores.get(0).getId_partida(),jugadores.get(0).getNombre(),jugadores.get(0).isTurno(),jugadores.get(0).getPosicion(),jugadores.get(0).isQamarillo(),jugadores.get(0).isQrosa(),jugadores.get(0).isQverde(),jugadores.get(0).isQmarron(),jugadores.get(0).isQazul(),jugadores.get(0).isQnaranja(),jugadores.get(0).isGanador());
-            opdb.SetJugador(jugadores.get(1).getId_partida(),jugadores.get(1).getNombre(),jugadores.get(1).isTurno(),jugadores.get(1).getPosicion(),jugadores.get(1).isQamarillo(),jugadores.get(1).isQrosa(),jugadores.get(1).isQverde(),jugadores.get(1).isQmarron(),jugadores.get(1).isQazul(),jugadores.get(1).isQnaranja(),jugadores.get(1).isGanador());
         }catch (NullPointerException NPE) {
             jugadores = new ArrayList<>();
             OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
             opdb.BorrarTodasPartidas();
             opdb.BorrarTodosJugadores();
             opdb.SetPartida(false,"partidaprueba1");
-            jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"b0c",false,false,false,false,false,false,false));
-            jugadores.add(new Jugador(2,1,getIntent().getStringExtra("jugador2"),false,"b0c",false,false,false,false,false,false,false));
->>>>>>> 09a671ebd3aae2f7449e3f67a7268453ee2aaad1
+            jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"1000236",false,false,false,false,false,false,false));
+            jugadores.add(new Jugador(2,1,getIntent().getStringExtra("jugador2"),false,"1000235",false,false,false,false,false,false,false));
         }
 
 
