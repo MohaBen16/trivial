@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.113"
-        app:srcCompat="@drawable/fichajugador" />
+        app:srcCompat="@drawable/fj" />
 
     <TextView
         android:id="@+id/score2"
@@ -1154,7 +1154,7 @@
         android:id="@+id/b_ficha2"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/fichajugador"
+        android:background="@drawable/fj"
         android:tag="00"
         android:text="F2"
         android:textColor="@android:color/background_light"
@@ -1171,7 +1171,7 @@
         android:id="@+id/b_ficha1"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/fichajugador"
+        android:background="@drawable/fj"
         android:tag="00"
         android:text="F1"
         android:textColor="@android:color/white"
@@ -1243,7 +1243,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.113"
-        app:srcCompat="@drawable/fichajugador" />
+        app:srcCompat="@drawable/fj" />
 
     <ImageView
         android:id="@+id/quisitoO"
@@ -1351,7 +1351,7 @@
         app:layout_constraintVertical_bias="0.034" />
 
     <TextView
-        android:id="@+id/nJugador"
+        android:id="@+id/nJugador2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gonza"

@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,13 +27,14 @@ public class Juego extends AppCompatActivity {
 
     public static final Random RANDOM = new Random();
 
-    Button b_dado,b_ficha1,b_ficha2,b1;
+    Button b_dado,b_ficha1,b_ficha2,b1, button1,button2;
     ImageView iv_dado,q_azul,q_rojo,q_naranja,q_amarillo,q_verde,q_morado;
-    TextView t_j1,t_j2;
+    TextView t_j1,t_j2,t_nj1,t_nj2;
     Animation anim;
 
     List<Jugador> jugador = new ArrayList<>();
 
+    Button bp = null;
 
     private static final int[] CASILLAS = {
             R.id.a1c,R.id.a2c,R.id.a3c,R.id.a4c,R.id.a5c,R.id.a6c,R.id.a7d,R.id.a7i,R.id.a8d,R.id.a8i,R.id.a9d,R.id.a9i,
@@ -50,9 +52,9 @@ public class Juego extends AppCompatActivity {
     String cFicha;
     ArrayList<Jugador> jugadores;
 
-    public String posFicha1,posFicha2;
+    boolean back = false;
 
-    private float posX,posY;
+    public String pos[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +75,16 @@ public class Juego extends AppCompatActivity {
         b_ficha2 = (Button)findViewById(R.id.b_ficha2);
         iv_dado = (ImageView)findViewById(R.id.iv_dado);
         q_azul= findViewById(R.id.quisitoA);
+        q_rojo = findViewById(R.id.quisitoR);
+        q_amarillo= findViewById(R.id.quisitoO);
+        q_morado=findViewById(R.id.quisitoM);
+        q_naranja=findViewById(R.id.quisitoN);
+        q_verde = findViewById(R.id.quisitoV);
         t_j1 = findViewById(R.id.tJugador);
         t_j2 = findViewById(R.id.tJugador2);
+        t_nj1 = findViewById(R.id.nJugador1);
+        t_nj2 = findViewById(R.id.nJugador2);
+        bp = (Button)findViewById(R.id.a6c);
 
         jugadores = (ArrayList<Jugador>) getIntent().getSerializableExtra("jugadores");
 
@@ -92,14 +102,23 @@ public class Juego extends AppCompatActivity {
 
             tirar = 3;
 
-            final Button button1 = devolverButton(Integer.parseInt(jugadores.get(0).getPosicion()));
-            final Button button2 =  devolverButton(Integer.parseInt(jugadores.get(1).getPosicion()));;
+            final Button button1 = findViewById(Integer.parseInt(jugadores.get(0).getPosicion()));
+            final Button button2 = findViewById(Integer.parseInt(jugadores.get(1).getPosicion()));
 
             if(jugadores.get(0).isTurno()){
 
-                b_ficha1.setTag(String.valueOf(button1.getResources().getResourceEntryName(button1.getId())));
-                b_ficha1.setX(button1.getX());
-                b_ficha1.setY(button1.getY());
+                b_ficha1.setBackgroundResource(R.drawable.fj_v);
+                b_ficha2.setBackgroundResource(R.drawable.fj_r);
+
+                b_ficha1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        b_ficha1.setTag(String.valueOf(button1.getResources().getResourceEntryName(button1.getId())));
+                        b_ficha1.setX(button1.getX());
+                        b_ficha1.setY(button1.getY());
+                    }
+                });
 
                 // posicion en la que esta la ficha
                 posFicha = b_ficha1.getTag().toString().charAt(1) - '0';
@@ -111,9 +130,19 @@ public class Juego extends AppCompatActivity {
 
             }else if(jugadores.get(1).isTurno()){
 
-                b_ficha2.setTag(String.valueOf(button2.getResources().getResourceEntryName(button2.getId())));
-                b_ficha2.setX(button2.getX());
-                b_ficha2.setY(button2.getY());
+                b_ficha1.setBackgroundResource(R.drawable.fj_r);
+                b_ficha2.setBackgroundResource(R.drawable.fj_v);
+
+
+                b_ficha2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        b_ficha2.setTag(String.valueOf(button2.getResources().getResourceEntryName(button2.getId())));
+                        b_ficha2.setX(button2.getX());
+                        b_ficha2.setY(button2.getY());
+                    }
+                });
 
                 // posicion en la que esta la ficha
                 posFicha = b_ficha2.getTag().toString().charAt(1) - '0';
@@ -125,7 +154,6 @@ public class Juego extends AppCompatActivity {
 
             }
 
-
         }catch (NullPointerException NPE) {
             jugadores = new ArrayList<>();
             OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
@@ -135,7 +163,6 @@ public class Juego extends AppCompatActivity {
             jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"1000236",false,false,false,false,false,false,false));
             jugadores.add(new Jugador(2,1,getIntent().getStringExtra("jugador2"),false,"1000235",false,false,false,false,false,false,false));
         }
-
 
         InsertarValoresbd ivd = new InsertarValoresbd(this);
 
@@ -162,11 +189,12 @@ public class Juego extends AppCompatActivity {
                         jugadores.get(0).setTurno(true);
                         jugadores.get(1).setTurno(false);
 
-                        Toast.makeText(getApplicationContext(), "Empieza " + jugadores.get(0).getNombre(), Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getApplicationContext(), "Empieza el jugador 1", Toast.LENGTH_SHORT).show();
                     }else {
                         jugadores.get(0).setTurno(false);
                         jugadores.get(1).setTurno(true);
-                        Toast.makeText(getApplicationContext(), "Empieza " + jugadores.get(1).getNombre(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Empieza el jugador 2", Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
@@ -190,6 +218,8 @@ public class Juego extends AppCompatActivity {
 
                             t_j1.setTextColor(Color.GREEN);
                             t_j2.setTextColor(Color.RED);
+                            b_ficha1.setBackgroundResource(R.drawable.fj_v);
+                            b_ficha2.setBackgroundResource(R.drawable.fj_r);
                             b_ficha1.setEnabled(true);
                             b_ficha2.setEnabled(false);
 
@@ -202,6 +232,8 @@ public class Juego extends AppCompatActivity {
 
                             t_j1.setTextColor(Color.RED);
                             t_j2.setTextColor(Color.GREEN);
+                            b_ficha1.setBackgroundResource(R.drawable.fj_r);
+                            b_ficha2.setBackgroundResource(R.drawable.fj_v);
                             b_ficha1.setEnabled(false);
                             b_ficha2.setEnabled(true);
 
@@ -256,25 +288,8 @@ public class Juego extends AppCompatActivity {
                 anim = AnimationUtils.loadAnimation(getApplicationContext() ,R.anim.rotate);
                 iv_dado.startAnimation(anim);
                 iv_dado.setImageResource(res);
-                iv_dado.setEnabled(false);
             }
         });
-    }
-
-    private Button devolverButton(int parseInt) {
-
-        final Button button;
-
-        for(int id : CASILLAS) {
-
-            if(id == parseInt ){
-                final Button button_dev = (Button) findViewById(id);
-                return button_dev;
-            }
-        }
-
-        return null;
-
     }
 
     public void ocultarCasillas(){
@@ -287,33 +302,35 @@ public class Juego extends AppCompatActivity {
 
         b.setVisibility(View.VISIBLE);
 
-        b_dado.setVisibility(View.INVISIBLE);
+        b_dado.setEnabled(false);
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                anim = AnimationUtils.loadAnimation(getApplicationContext() ,R.anim.rotate);
+                anim = AnimationUtils.loadAnimation(getApplicationContext() , R.anim.rotate);
 
-                if(turno == 1){
+                if(jugadores.get(0).isTurno()){
 
                     b_ficha1.setTag(String.valueOf(b.getResources().getResourceEntryName(b.getId())));
                     b_ficha1.setX(b.getX());
                     b_ficha1.setY(b.getY());
                     b_ficha1.startAnimation(anim);
 
-                    b_dado.setVisibility(View.VISIBLE);
+                    b_dado.setEnabled(true);
 
-                }else if(turno == 2){
+                }else if(jugadores.get(1).isTurno()){
 
                     b_ficha2.setTag(String.valueOf(b.getResources().getResourceEntryName(b.getId())));
                     b_ficha2.setX(b.getX());
                     b_ficha2.setY(b.getY());
                     b_ficha2.startAnimation(anim);
 
-                    b_dado.setVisibility(View.VISIBLE);
+                    b_dado.setEnabled(true);
                 }
                 ocultarCasillas();
+
+
 
                 for(Jugador jugador : jugadores){
                     if(jugador.isTurno())
@@ -325,12 +342,9 @@ public class Juego extends AppCompatActivity {
                     public void run() {
                         boolean esQuesito = false;
                         if(posFicha == 6) esQuesito = true;
-
                         obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),esQuesito,jugadores);
                     }
-                }, 1000);
-
-                iv_dado.setEnabled(true);
+                }, 1500);
 
             }
         });
@@ -363,4 +377,5 @@ public class Juego extends AppCompatActivity {
         Intent intent = new Intent(this, Clasificacion.class);
         startActivity(intent);
     }
+
 }

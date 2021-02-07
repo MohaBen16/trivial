@@ -22,9 +22,9 @@ public class Historial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_historial);
+       // setContentView(R.layout.activity_historial);
 
-        LVpartidas = findViewById(R.id.listapartidas);
+      //  LVpartidas = findViewById(R.id.listapartidas);
         mostrarpartidas = new ArrayList();
         partidas = new ArrayList<>();
 
