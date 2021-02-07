@@ -109,9 +109,7 @@ public class Quiz extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(this,Juego.class);
-        intent.putExtra("jugadores",jugadores);
-        startActivity(intent);
+        regresarAlTablero();
     }
 
     private void preguntaEquivocada(){
@@ -121,8 +119,14 @@ public class Quiz extends AppCompatActivity {
             else jugador.setTurno(true);
         }
 
-        Intent intent = new Intent(this,Juego.class);
+        regresarAlTablero();
+    }
+
+    public void regresarAlTablero(){
+
+        Intent intent = new Intent();
         intent.putExtra("jugadores",jugadores);
-        startActivity(intent);
+        setResult(1,intent);
+        finish();
     }
 }

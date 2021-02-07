@@ -2,6 +2,7 @@ package com.example.trivial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,14 +28,10 @@ public class Juego extends AppCompatActivity {
 
     public static final Random RANDOM = new Random();
 
-    Button b_dado,b_ficha1,b_ficha2,b1, button1,button2;
+    Button b_dado,b_ficha1,b_ficha2;
     ImageView iv_dado,q_azul,q_rojo,q_naranja,q_amarillo,q_verde,q_morado;
     TextView t_j1,t_j2,t_nj1,t_nj2;
     Animation anim;
-
-    List<Jugador> jugador = new ArrayList<>();
-
-    Button bp = null;
 
     private static final int[] CASILLAS = {
             R.id.a1c,R.id.a2c,R.id.a3c,R.id.a4c,R.id.a5c,R.id.a6c,R.id.a7d,R.id.a7i,R.id.a8d,R.id.a8i,R.id.a9d,R.id.a9i,
@@ -84,75 +81,10 @@ public class Juego extends AppCompatActivity {
         t_j2 = findViewById(R.id.tJugador2);
         t_nj1 = findViewById(R.id.nJugador1);
         t_nj2 = findViewById(R.id.nJugador2);
-        bp = (Button)findViewById(R.id.a6c);
-
-        jugadores = (ArrayList<Jugador>) getIntent().getSerializableExtra("jugadores");
-
 
         try{
 
             jugadores.size();
-
-            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
-            opdb.BorrarTodasPartidas();
-            opdb.BorrarTodosJugadores();
-            opdb.SetPartida(false,"partidaprueba1");
-            opdb.SetJugador(jugadores.get(0).getId_partida(),jugadores.get(0).getNombre(),jugadores.get(0).isTurno(),jugadores.get(0).getPosicion(),jugadores.get(0).isQamarillo(),jugadores.get(0).isQrosa(),jugadores.get(0).isQverde(),jugadores.get(0).isQmarron(),jugadores.get(0).isQazul(),jugadores.get(0).isQnaranja(),jugadores.get(0).isGanador());
-            opdb.SetJugador(jugadores.get(1).getId_partida(),jugadores.get(1).getNombre(),jugadores.get(1).isTurno(),jugadores.get(1).getPosicion(),jugadores.get(1).isQamarillo(),jugadores.get(1).isQrosa(),jugadores.get(1).isQverde(),jugadores.get(1).isQmarron(),jugadores.get(1).isQazul(),jugadores.get(1).isQnaranja(),jugadores.get(1).isGanador());
-
-            tirar = 3;
-
-            final Button button1 = findViewById(Integer.parseInt(jugadores.get(0).getPosicion()));
-            final Button button2 = findViewById(Integer.parseInt(jugadores.get(1).getPosicion()));
-
-            if(jugadores.get(0).isTurno()){
-
-                b_ficha1.setBackgroundResource(R.drawable.fj_v);
-                b_ficha2.setBackgroundResource(R.drawable.fj_r);
-
-                b_ficha1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        b_ficha1.setTag(String.valueOf(button1.getResources().getResourceEntryName(button1.getId())));
-                        b_ficha1.setX(button1.getX());
-                        b_ficha1.setY(button1.getY());
-                    }
-                });
-
-                // posicion en la que esta la ficha
-                posFicha = b_ficha1.getTag().toString().charAt(1) - '0';
-                // categoria en la que esta la ficha
-                cFicha = String.valueOf(b_ficha1.getTag().toString().charAt(0));
-
-                t_j1.setTextColor(Color.GREEN);
-                t_j2.setTextColor(Color.RED);
-
-            }else if(jugadores.get(1).isTurno()){
-
-                b_ficha1.setBackgroundResource(R.drawable.fj_r);
-                b_ficha2.setBackgroundResource(R.drawable.fj_v);
-
-
-                b_ficha2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        b_ficha2.setTag(String.valueOf(button2.getResources().getResourceEntryName(button2.getId())));
-                        b_ficha2.setX(button2.getX());
-                        b_ficha2.setY(button2.getY());
-                    }
-                });
-
-                // posicion en la que esta la ficha
-                posFicha = b_ficha2.getTag().toString().charAt(1) - '0';
-                // categoria en la que esta la ficha
-                cFicha = String.valueOf(b_ficha2.getTag().toString().charAt(0));
-
-                t_j1.setTextColor(Color.RED);
-                t_j2.setTextColor(Color.GREEN);
-
-            }
 
         }catch (NullPointerException NPE) {
             jugadores = new ArrayList<>();
@@ -160,6 +92,8 @@ public class Juego extends AppCompatActivity {
             opdb.BorrarTodasPartidas();
             opdb.BorrarTodosJugadores();
             opdb.SetPartida(false,"partidaprueba1");
+            t_nj1.setText(getIntent().getStringExtra("jugador1"));
+            t_nj2.setText(getIntent().getStringExtra("jugador2"));
             jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"1000236",false,false,false,false,false,false,false));
             jugadores.add(new Jugador(2,1,getIntent().getStringExtra("jugador2"),false,"1000235",false,false,false,false,false,false,false));
         }
@@ -190,11 +124,11 @@ public class Juego extends AppCompatActivity {
                         jugadores.get(1).setTurno(false);
 
 
-                        Toast.makeText(getApplicationContext(), "Empieza el jugador 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Empieza "+jugadores.get(0).getNombre(), Toast.LENGTH_SHORT).show();
                     }else {
                         jugadores.get(0).setTurno(false);
                         jugadores.get(1).setTurno(true);
-                        Toast.makeText(getApplicationContext(), "Empieza el jugador 2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Empieza "+jugadores.get(1).getNombre(), Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
@@ -292,6 +226,52 @@ public class Juego extends AppCompatActivity {
         });
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            jugadores = (ArrayList<Jugador>) data.getSerializableExtra("jugadores");
+
+            OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
+            opdb.BorrarTodasPartidas();
+            opdb.BorrarTodosJugadores();
+            opdb.SetPartida(false,"partidaprueba1");
+            opdb.SetJugador(jugadores.get(0).getId_partida(),jugadores.get(0).getNombre(),jugadores.get(0).isTurno(),jugadores.get(0).getPosicion(),jugadores.get(0).isQamarillo(),jugadores.get(0).isQrosa(),jugadores.get(0).isQverde(),jugadores.get(0).isQmarron(),jugadores.get(0).isQazul(),jugadores.get(0).isQnaranja(),jugadores.get(0).isGanador());
+            opdb.SetJugador(jugadores.get(1).getId_partida(),jugadores.get(1).getNombre(),jugadores.get(1).isTurno(),jugadores.get(1).getPosicion(),jugadores.get(1).isQamarillo(),jugadores.get(1).isQrosa(),jugadores.get(1).isQverde(),jugadores.get(1).isQmarron(),jugadores.get(1).isQazul(),jugadores.get(1).isQnaranja(),jugadores.get(1).isGanador());
+
+            tirar = 3;
+
+            if(jugadores.get(0).isTurno()){
+
+                b_ficha1.setBackgroundResource(R.drawable.fj_v);
+                b_ficha2.setBackgroundResource(R.drawable.fj_r);
+
+                // posicion en la que esta la ficha
+                posFicha = b_ficha1.getTag().toString().charAt(1) - '0';
+                // categoria en la que esta la ficha
+                cFicha = String.valueOf(b_ficha1.getTag().toString().charAt(0));
+
+                t_j1.setTextColor(Color.GREEN);
+                t_j2.setTextColor(Color.RED);
+
+            }else if(jugadores.get(1).isTurno()){
+
+                b_ficha1.setBackgroundResource(R.drawable.fj_r);
+                b_ficha2.setBackgroundResource(R.drawable.fj_v);
+
+                // posicion en la que esta la ficha
+                posFicha = b_ficha2.getTag().toString().charAt(1) - '0';
+                // categoria en la que esta la ficha
+                cFicha = String.valueOf(b_ficha2.getTag().toString().charAt(0));
+
+                t_j1.setTextColor(Color.RED);
+                t_j2.setTextColor(Color.GREEN);
+
+            }
+        }
+    }
+
     public void ocultarCasillas(){
         for(int id : CASILLAS) {
             final Button button = (Button) findViewById(id);
@@ -370,12 +350,13 @@ public class Juego extends AppCompatActivity {
         intent.putExtra("pregunta",pregunta);
         intent.putExtra("esQuesito",esQuesito);
         intent.putExtra("jugadores",jugadores);
-        startActivity(intent);
+
+        startActivityForResult(intent,1) ;
     }
 
     public void clasificacion(View v){
-        Intent intent = new Intent(this, Clasificacion.class);
-        startActivity(intent);
+
+        startActivityForResult(new Intent(getApplicationContext(),Clasificacion.class),2) ;
     }
 
 }
