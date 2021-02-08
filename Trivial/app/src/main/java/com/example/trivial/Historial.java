@@ -24,6 +24,8 @@ public class Historial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
 
+        getSupportActionBar().hide();
+
         LVpartidas = findViewById(R.id.listapartidas);
         mostrarpartidas = new ArrayList();
         partidas = new ArrayList<>();

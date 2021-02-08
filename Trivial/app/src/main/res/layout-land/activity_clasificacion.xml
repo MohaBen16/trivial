@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Historial">
+    android:background="#13233d"
+    tools:context=".Clasificacion">
 
-    <ListView
-        android:id="@+id/listapartidas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        android:cacheColorHint="@android:color/background_light"
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="411dp"
+        android:layout_height="96dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

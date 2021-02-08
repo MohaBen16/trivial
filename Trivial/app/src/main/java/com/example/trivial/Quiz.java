@@ -106,7 +106,8 @@ public class Quiz extends AppCompatActivity {
                 else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.deportes)) jugador.setQnaranja(true);
                 else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.ciencia)) jugador.setQverde(true);
                 else if(objpregunta.getCategoriaPregunta().equals(CategoriaPregunta.lengua)) jugador.setQrosa(true);
-            }
+            }else if(jugador.isTurno() && jugador.isQverde() && jugador.isQmarron() && jugador.isQrosa() && jugador.isQnaranja() && jugador.isQamarillo() && jugador.isQazul())
+                jugador.setGanador(true);
         }
 
         regresarAlTablero();

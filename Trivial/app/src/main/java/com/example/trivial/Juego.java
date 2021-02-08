@@ -30,6 +30,7 @@ public class Juego extends AppCompatActivity {
 
     Button b_dado,b_ficha1,b_ficha2;
     ImageView iv_dado,q_azul,q_rojo,q_naranja,q_amarillo,q_verde,q_morado;
+    ImageView q_azul2,q_rojo2,q_naranja2,q_amarillo2,q_verde2,q_morado2;
     TextView t_j1,t_j2,t_nj1,t_nj2;
     Animation anim;
 
@@ -45,8 +46,8 @@ public class Juego extends AppCompatActivity {
 
     Map<String,String> cMapa= new HashMap<String,String>();
 
-    int posFicha, turno = 0, tirar = 1 , n = 0;
-    String cFicha;
+    int posFicha, turno = 0, tirar = 1 , n = 0,posCasilla;
+    String cFicha,cCasilla;
     ArrayList<Jugador> jugadores;
 
     boolean back = false;
@@ -71,12 +72,18 @@ public class Juego extends AppCompatActivity {
         b_ficha1 = (Button)findViewById(R.id.b_ficha1);
         b_ficha2 = (Button)findViewById(R.id.b_ficha2);
         iv_dado = (ImageView)findViewById(R.id.iv_dado);
-        q_azul= findViewById(R.id.quisitoA);
+        q_azul = findViewById(R.id.quisitoA);
         q_rojo = findViewById(R.id.quisitoR);
-        q_amarillo= findViewById(R.id.quisitoO);
-        q_morado=findViewById(R.id.quisitoM);
-        q_naranja=findViewById(R.id.quisitoN);
+        q_amarillo = findViewById(R.id.quisitoO);
+        q_morado =findViewById(R.id.quisitoM);
+        q_naranja =findViewById(R.id.quisitoN);
         q_verde = findViewById(R.id.quisitoV);
+        q_azul2 = findViewById(R.id.quisitoA2);
+        q_rojo2 = findViewById(R.id.quisitoR2);
+        q_amarillo2 = findViewById(R.id.quisitoO2);
+        q_morado2 = findViewById(R.id.quisitoM2);
+        q_naranja2 = findViewById(R.id.quisitoN2);
+        q_verde2 = findViewById(R.id.quisitoV2);
         t_j1 = findViewById(R.id.tJugador);
         t_j2 = findViewById(R.id.tJugador2);
         t_nj1 = findViewById(R.id.nJugador1);
@@ -91,7 +98,7 @@ public class Juego extends AppCompatActivity {
             OperacionesBaseDatos opdb = OperacionesBaseDatos.Instanciar(this);
             opdb.BorrarTodasPartidas();
             opdb.BorrarTodosJugadores();
-            opdb.SetPartida(false,"partidaprueba1");
+            opdb.SetPartida(false,"partida 1");
             t_nj1.setText(getIntent().getStringExtra("jugador1"));
             t_nj2.setText(getIntent().getStringExtra("jugador2"));
             jugadores.add(new Jugador(1,1,getIntent().getStringExtra("jugador1"),true,"1000236",false,false,false,false,false,false,false));
@@ -137,9 +144,9 @@ public class Juego extends AppCompatActivity {
                         final Button button = (Button) findViewById(id);
 
                         // numero de la posicion de la casilla
-                        int posCasilla = button.getResources().getResourceEntryName(button.getId()).charAt(1) - '0';
+                        posCasilla = button.getResources().getResourceEntryName(button.getId()).charAt(1) - '0';
                         // categoria de la posicion de la casilla
-                        String cCasilla = String.valueOf(button.getResources().getResourceEntryName(button.getId()).charAt(0));
+                        cCasilla = String.valueOf(button.getResources().getResourceEntryName(button.getId()).charAt(0));
                         // direccion de la casilla
                         String dCasilla = String.valueOf(button.getResources().getResourceEntryName(button.getId()).charAt(2));
 
@@ -173,44 +180,40 @@ public class Juego extends AppCompatActivity {
 
                         }
 
-                        if(posFicha == 6 && cCasilla.equals("a")){
-                            q_azul.setVisibility(View.VISIBLE);
-                        }
-
                         //Control de movimientos
 
                         if (posFicha + nDado <= 9 && posCasilla  > posFicha && posFicha <= 6 ) {
 
                             if (posCasilla == nDado + posFicha && (cCasilla.equals(cFicha) || cFicha.equals("0"))) {
-                                moverFicha(button);
+                                moverFicha(button,posCasilla);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
                         }else if(posFicha >= 4  &&  posFicha  < 6 && (posFicha == 4 && nDado == 6 || posFicha == 5 && nDado == 5 )){
 
                             if (posCasilla == (posFicha+nDado)-1 && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i"))))){
-                                moverFicha(button);
+                                moverFicha(button,posCasilla);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
                         }else if ( posFicha == 5 && nDado == 6){
 
                             if(posCasilla == (posFicha+nDado)-3 && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i"))))){
-                                moverFicha(button);
+                                moverFicha(button,posCasilla);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
                         }else if( posFicha == 6) {
 
                             if ((posCasilla == (posFicha-nDado) && (cCasilla.equals(cFicha) || cCasilla.equals("b")))|| (posCasilla == ((posFicha-nDado)+(posFicha+1))) && ((cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(0))) && (dCasilla.equals("d"))) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1)))  && (dCasilla.equals("i"))))) {
-                                moverFicha(button);
+                                moverFicha(button,posCasilla);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
                         }else if( posFicha > 6 ) {
 
                             if (posCasilla == (nDado+2) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("d"))) || ((posCasilla == (posFicha-((posFicha-5)+(posFicha-7)))+nDado && (cCasilla.equals(cFicha) && dCasilla.equals("i")) )) || (posCasilla == ((posFicha-2)+nDado) && (cCasilla.equals(cFicha) && dCasilla.equals("i"))) || (posCasilla == (posFicha-nDado) && cFicha.equals(cCasilla)) || posCasilla == ((posFicha-nDado)+((10-posFicha)+(10-(posFicha+1)))) && (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && (dCasilla.equals("i")) || (cCasilla.equals(String.valueOf(cMapa.get(cFicha).charAt(1))) && posCasilla == 6 ))) {
-                                moverFicha(button);
+                                moverFicha(button,posCasilla);
                             }else {
                                 button.setVisibility(View.INVISIBLE);
                             }
@@ -244,6 +247,22 @@ public class Juego extends AppCompatActivity {
 
             if(jugadores.get(0).isTurno()){
 
+                if (jugadores.get(0).isQazul())
+                    q_azul.setVisibility(View.VISIBLE);
+                if (jugadores.get(0).isQamarillo())
+                    q_amarillo.setVisibility(View.VISIBLE);
+                if (jugadores.get(0).isQnaranja())
+                    q_naranja.setVisibility(View.VISIBLE);
+                if (jugadores.get(0).isQrosa())
+                    q_rojo.setVisibility(View.VISIBLE);
+                if (jugadores.get(0).isQmarron())
+                    q_morado.setVisibility(View.VISIBLE);
+                if (jugadores.get(0).isQverde())
+                    q_verde.setVisibility(View.VISIBLE);
+
+                if(jugadores.get(0).isGanador())
+                    Toast.makeText(getApplicationContext(),""+jugadores.get(0).getNombre()+ "Has ganado",Toast.LENGTH_SHORT).show();
+
                 b_ficha1.setBackgroundResource(R.drawable.fj_v);
                 b_ficha2.setBackgroundResource(R.drawable.fj_r);
 
@@ -256,6 +275,22 @@ public class Juego extends AppCompatActivity {
                 t_j2.setTextColor(Color.RED);
 
             }else if(jugadores.get(1).isTurno()){
+
+                if (jugadores.get(1).isQazul())
+                    q_azul2.setVisibility(View.VISIBLE);
+                if (jugadores.get(1).isQamarillo())
+                    q_amarillo2.setVisibility(View.VISIBLE);
+                if (jugadores.get(1).isQnaranja())
+                    q_naranja2.setVisibility(View.VISIBLE);
+                if (jugadores.get(1).isQrosa())
+                    q_rojo2.setVisibility(View.VISIBLE);
+                if (jugadores.get(1).isQmarron())
+                    q_morado2.setVisibility(View.VISIBLE);
+                if (jugadores.get(1).isQverde())
+                    q_verde2.setVisibility(View.VISIBLE);
+
+                if(jugadores.get(1).isGanador())
+                    Toast.makeText(getApplicationContext(),""+jugadores.get(1).getNombre()+ "Has ganado",Toast.LENGTH_SHORT).show();
 
                 b_ficha1.setBackgroundResource(R.drawable.fj_r);
                 b_ficha2.setBackgroundResource(R.drawable.fj_v);
@@ -278,7 +313,7 @@ public class Juego extends AppCompatActivity {
             button.setVisibility(View.INVISIBLE);
         }
     }
-    public void moverFicha(final Button b){
+    public void moverFicha(final Button b,final int p){
 
         b.setVisibility(View.VISIBLE);
 
@@ -308,9 +343,8 @@ public class Juego extends AppCompatActivity {
 
                     b_dado.setEnabled(true);
                 }
+
                 ocultarCasillas();
-
-
 
                 for(Jugador jugador : jugadores){
                     if(jugador.isTurno())
@@ -321,7 +355,7 @@ public class Juego extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         boolean esQuesito = false;
-                        if(posFicha == 6) esQuesito = true;
+                        if(p == 6) esQuesito = true;
                         obtenerPreguntas(String.valueOf(b.getTag().toString().charAt(0)),esQuesito,jugadores);
                     }
                 }, 1500);
