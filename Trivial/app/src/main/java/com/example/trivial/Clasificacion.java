@@ -2,17 +2,23 @@ package com.example.trivial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Clasificacion extends AppCompatActivity {
 
-    GridLayout grid;
-    TextView tv;
+    ListView listapuntuaciones;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,31 +26,33 @@ public class Clasificacion extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        grid =(GridLayout) findViewById(R.id.grid);
-        grid.setRowCount(1);
-        grid.setColumnCount(2);
+        listapuntuaciones = findViewById(R.id.listapuntuaciones);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(700, 100);
+        final ArrayList<Jugador> jugadores = (ArrayList<Jugador>) getIntent().getSerializableExtra("jugadores");
+        ArrayList<String> puntuaciones = new ArrayList<>();
 
-        for (int i =0; i < 5; i++){
-
-            tv = new TextView(this);
-
-            if(i == 0){
-
-                tv.setText("Jugador:");
-
-            }else if( i== 1){
-
-                tv.setText("Puntos:");
-            }
-
-            tv.setTextColor(Color.WHITE);
-            tv.setTextSize(30);
-            tv.setLayoutParams(layoutParams);
-            grid.addView(tv,i);
-
+        int i = 2;
+        for(Jugador jugador : jugadores){
+            puntuaciones.add("Jugador: " + jugador.getNombre() + " puntos: " + i);
+            i--;
         }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, puntuaciones);
+        listapuntuaciones.setAdapter(adapter);
+
+        listapuntuaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                regresarAlTablero(jugadores);
+            }
+        });
+    }
+
+
+    public void regresarAlTablero(ArrayList<Jugador> jugadores){
+        Intent intent = new Intent();
+        intent.putExtra("jugadores",jugadores);
+        setResult(1,intent);
+        finish();
     }
 }

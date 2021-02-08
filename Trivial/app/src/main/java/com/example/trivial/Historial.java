@@ -66,6 +66,7 @@ public class Historial extends AppCompatActivity {
     public void CargarPartida(ArrayList<Jugador> jugadores){
         Intent intent = new Intent(this,Juego.class);
         intent.putExtra("jugadores",jugadores);
+        setResult(1,intent);
         startActivity(intent);
     }
 

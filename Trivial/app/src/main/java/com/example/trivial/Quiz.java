@@ -124,7 +124,6 @@ public class Quiz extends AppCompatActivity {
     }
 
     public void regresarAlTablero(){
-
         Intent intent = new Intent();
         intent.putExtra("jugadores",jugadores);
         setResult(1,intent);
